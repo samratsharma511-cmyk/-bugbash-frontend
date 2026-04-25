@@ -23,8 +23,10 @@ export default function Login() {
     setError("");
     setLoading(true);
 
+    console.log("okk", process.env.NEXT_PUBLIC_BACKEND_URL)
+
     try {
-      const res = await fetch("http://127.0.0.1:8000/users/login", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,6 +41,7 @@ export default function Login() {
         setLoading(false);
         return;
       }
+
 
       // ✅ STORE TOKEN
       localStorage.setItem("access_token", data.access_token);
@@ -131,6 +134,7 @@ export default function Login() {
             <button type="submit" className={style.loginButton}>
               {loading ? "Logging in..." : "Login"}
             </button>
+
           </div>
         </form>
       </div>
