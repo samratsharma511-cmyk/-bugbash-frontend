@@ -55,7 +55,9 @@
 
 .whiteBox {
     background: white;
-    padding: 2rem;
+    margin: 2rem;
+    margin-bottom: -3em;
+    padding-top: 10px;
     border-radius: 1rem;
 }
 

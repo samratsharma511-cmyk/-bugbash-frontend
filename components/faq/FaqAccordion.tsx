@@ -49,7 +49,7 @@ const faqs: FaqEntry[] = [
 ];
 
 export default function FaqAccordion() {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
         <div className={styles.flexCol} data-orientation="vertical">
