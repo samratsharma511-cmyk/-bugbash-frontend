@@ -1,7 +1,7 @@
 .main {
-    background-color: #0f172a; /* adjust to your bodyBg */
+    background-color: #0f172a;
     position: relative;
-    z-index: -30;
+    z-index: 0;
 }
 
 .container {
@@ -52,7 +52,6 @@
     display: grid;
     gap: 2rem;
 }
-
 
 .whiteBox {
     background: white;
@@ -162,64 +161,10 @@
     background: #6366f1;
     color: white;
 }
-.footerContainer {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 16px;
-    position: relative;
-}
-
-.footerCard {
-    background: white;
-    border-radius: 16px;
-    padding: 40px 20px;
-}
-
-.footerGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-
-.footerCol {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.footerLogo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.footerLogo:hover {
-    transform: scale(1.05);
-}
-
 .logoText {
     font-size: 24px;
     font-weight: bold;
     color: black;
-}
-
-.footerTitle {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.footerLink {
-    font-size: 14px;
-    color: black;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.footerLink:hover {
-    transform: translateX(4px);
-    opacity: 0.8;
 }
 
 .bgShapeTop {
@@ -369,23 +314,6 @@
 .ctaButton:hover {
     transform: scale(1.05);
 }
-
-.footerLeft {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: calc(20% + 1vw);
-    max-width: 22rem;
-}
-
-.footerRight {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: calc(20% + 1vw);
-    max-width: 22rem;
-}
-
 .faqQuestion {
     font-size: 16px;
     font-weight: 600;
@@ -407,23 +335,10 @@
     padding: 32px 0;
 }
 
-.footerWrapper {
-    position: relative;
-    margin: 0 auto;
-    padding: 24px 0 12px;
-}
-
 .iconInline {
     display: inline-flex;
     align-items: center;
     margin-left: 4px;
-}
-
-.footerBottom {
-    border-top: 1px solid #e5e7eb;
-    padding: 16px 0;
-    text-align: center;
-    color: black;
 }
 .marginTop {
     margin-top: 16px;

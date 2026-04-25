@@ -1,0 +1,73 @@
+.fullWidth {
+    width: 100%;
+}
+
+.footerWrapper {
+    position: relative;
+    margin: 0 auto;
+    padding: 24px 0 12px;
+}
+
+.footerBottom {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px 0;
+    text-align: center;
+    color: black;
+}
+
+.footerTitle {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.footerLink {
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.footerLink:hover {
+    transform: translateX(4px);
+    opacity: 0.8;
+}
+
+.footerLeft {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(20% + 1vw);
+    max-width: 22rem;
+}
+
+.footerRight {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(20% + 1vw);
+    max-width: 22rem;
+}
+
+.logoText {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+.textMuted {
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.marginTop {
+    margin-top: 16px;
+}
+
+.flexCol {
+    display: flex;
+    flex-direction: column;
+}
+
+.emailText {
+    font-size: 14px;
+    color: inherit;
+}
