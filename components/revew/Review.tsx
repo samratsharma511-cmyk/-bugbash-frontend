@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 
-import styles from './faq.module.css';
+import styles from './Review.module.css';
 
 const data = [
     {

@@ -1,0 +1,169 @@
+/* faq.module.css */
+
+.main {
+    background-color: #0f172a; /* adjust to your bodyBg */
+    position: relative;
+    z-index: -30;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.section {
+    width: 100%;
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.card {
+    position: relative;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 2.5rem 3rem;
+    margin: 2rem 0;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #6366f1;
+    border-radius: 999px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform: translateX(4px);
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.grid2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.whiteCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.courseItem {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.courseItem:hover {
+    background: #6366f1;
+    color: white;
+}
+
+.faqContainer {
+    background: #6366f1;
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.faqItem {
+    margin-bottom: 12px;
+}
+
+.faqButton {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.faqAnswer {
+    padding: 1rem 1.5rem;
+    font-size: 14px;
+}
+
+/* utility replacements for removed Tailwind */
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subHeading {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.textMuted {
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.btnPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #6366f1;
+    padding: 12px 24px;
+    border-radius: 999px;
+    color: white;
+    font-size: 14px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.btnPrimary:hover {
+    transform: translateX(4px);
+}
+
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.courseItemClean {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.courseItemClean:hover {
+    background: #6366f1;
+    color: white;
+}
