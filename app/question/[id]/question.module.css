@@ -62,7 +62,7 @@
   gap: 10px;
   border: 1px solid #3a3f48;
   background: #0f141a;
-  border-radius: 999px;
+  border-radius: 5px;
   padding: 8px 12px;
   font-size: 14px;
   font-weight: 700;
@@ -92,7 +92,7 @@
 .runTopButton,
 .submitTopButton {
   height: 40px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid #2f3742;
   background: #0f141a;
   color: #eef3fa;
@@ -154,7 +154,7 @@
 .railButton {
   width: 42px;
   height: 42px;
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid transparent;
   background: transparent;
   color: #8f98a8;
@@ -204,7 +204,7 @@
 .leftTab {
   height: 36px;
   padding: 0 12px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 0;
   background: transparent;
   color: #aab3c2;
@@ -228,7 +228,7 @@
 .headerIconButton {
   width: 32px;
   height: 32px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid #2d3440;
   background: #0f141a;
   color: #b8c1ce;
@@ -279,7 +279,7 @@
   padding: 6px 10px;
   background: #7e4f00;
   color: #ffd489;
-  border-radius: 999px;
+  border-radius: 5px;
   font-size: 12px;
   font-weight: 800;
   text-transform: capitalize;
@@ -291,7 +291,7 @@
   padding: 6px 10px;
   background: #1b222b;
   color: #ffd36b;
-  border-radius: 999px;
+  border-radius: 5px;
   font-size: 12px;
   font-weight: 800;
 }
@@ -340,7 +340,7 @@
   padding: 12px 14px;
   background: #0f141a;
   border: 1px solid #232833;
-  border-radius: 12px;
+  border-radius: 4px;
   overflow: auto;
   color: #dce3ec;
 }
@@ -385,7 +385,7 @@
 .languageButton {
   height: 36px;
   padding: 0 12px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid #323a46;
   background: #10151c;
   color: #dfe6f1;
@@ -409,7 +409,7 @@
   z-index: 20;
   background: #0b0f14;
   border: 1px solid #2f3742;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 10px;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
 }
@@ -417,7 +417,7 @@
 .languageSearch {
   width: 100%;
   height: 42px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid #303743;
   background: #10151c;
   color: #edf3fb;
@@ -440,7 +440,7 @@
   color: #e6edf4;
   text-align: left;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -457,7 +457,7 @@
 .actionIconButton {
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid #2f3742;
   background: #0f141a;
   color: #b6becd;
@@ -535,7 +535,7 @@
   right: 12px;
   bottom: 0;
   height: 3px;
-  border-radius: 999px;
+  border-radius: 5px;
   background: #2f80ff;
 }
 
@@ -556,9 +556,6 @@
   background: transparent;
   color: #e9eef5;
   padding: 14px 16px;
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
   font-size: 14px;
   line-height: 1.6;
   box-sizing: border-box;
@@ -651,7 +648,7 @@
 
 .secondaryButton {
   height: 40px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid #2f3742;
   background: #10151c;
   color: #eef3fa;
@@ -667,7 +664,7 @@
 .submissionSummaryCard {
   border: 1px solid #232833;
   background: #11161d;
-  border-radius: 14px;
+  border-radius: 4px;
   padding: 16px;
   display: flex;
   justify-content: space-between;
@@ -707,7 +704,7 @@
 .submissionDetailGrid {
   margin-top: 14px;
   border: 1px solid #232833;
-  border-radius: 14px;
+  border-radius: 4px;
   overflow: hidden;
   display: grid;
   grid-template-columns: 150px minmax(0, 1fr);
@@ -727,7 +724,7 @@
   border: 1px solid #2c3540;
   background: #10151c;
   color: #dce3ec;
-  border-radius: 10px;
+  border-radius: 4px;
   min-height: 42px;
   padding: 0 10px;
   display: flex;
@@ -789,7 +786,7 @@
 .previousSubmissionRow {
   border: 1px solid #232833;
   background: #0f141a;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 12px 14px;
   color: #edf3fb;
   display: grid;

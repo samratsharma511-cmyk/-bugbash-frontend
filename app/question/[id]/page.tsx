@@ -643,6 +643,7 @@ export default function QuestionPage() {
                     borderColor: "rgba(34, 197, 94, 0.45)",
                     background: "rgba(34, 197, 94, 0.12)",
                     color: "#86efac",
+                    borderRadius: "4px",
                   }
                 : undefined
             }
@@ -1059,10 +1060,17 @@ export default function QuestionPage() {
                   automaticLayout: true,
                   minimap: { enabled: false },
                   scrollBeyondLastLine: false,
+
+  fontFamily: "'Poppins', monospace", // 🔥 ADD THIS
+  lineHeight: 24,                            // 🔥 FIX spacing
+  letterSpacing: 0.6,
+
                   fontSize: 15,
                   lineNumbers: "on",
                   wordWrap: "on",
                   smoothScrolling: true,
+
+                
                   padding: { top: 14, bottom: 14 },
                 }}
               />
@@ -1153,7 +1161,7 @@ export default function QuestionPage() {
                   scrollBeyondLastLine: false,
                   fontSize: 14,
                   lineNumbers: "on",
-                  wordWrap: "on",
+                  wordWrap: "on"
                 }}
               />
             </div>
