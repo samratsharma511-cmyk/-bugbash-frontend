@@ -3,8 +3,9 @@
 import { useState } from "react";
 import style from "./login.module.css";
 import { useRouter } from "next/navigation";
-import googleSvg from "@/public/google.svg";
 import Image from "next/image";
+
+import googleSvg from "@/public/google.svg";
 import hideImg from "@/public/pass_show.png";
 import showImg from "@/public/pass_hide.png";
 
@@ -14,42 +15,43 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordHidden, setPasswordHidden] = useState(true);
-  const [Error, setError] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
-      const res = await fetch(
-        "https://100-js-backend-2.vercel.app/auth/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch("http://127.0.0.1:8000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError("Invalid credentials");
+        setError("Invalid email or password");
+        setLoading(false);
         return;
       }
 
+      // ✅ STORE TOKEN
       localStorage.setItem("access_token", data.access_token);
 
-      // ✅ YOUR FLOW
+      // ✅ REDIRECT
       router.push("/dashboard");
     } catch (err) {
       setError("Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const passHideShow = () => {
-    setPasswordHidden(!passwordHidden);
-  };
-
-  // ✅ KEEP SAME (as you said)
   const handleGoogle = () => {
     window.location.href =
       "https://100-js-backend-2.vercel.app/auth/google/login";
@@ -61,19 +63,26 @@ export default function Login() {
         <form className={style.formLogin} onSubmit={handleSubmit}>
           <div className={style.contentTitel}>
             <h2 className={style.loginTitle}>Welcome Back 👋</h2>
-            <h6 className={style.loginPara}>
+            <p className={style.loginPara}>
               Login to continue your session
-            </h6>
+            </p>
           </div>
 
-          {/* GOOGLE */}
+          {/* GOOGLE LOGIN */}
           <div className={style.socialLogin}>
             <button
               type="button"
               onClick={handleGoogle}
               className={style.googleButton}
             >
-              <Image src={googleSvg} className={style.googleIcon} alt="Google" />
+              <Image
+                src={googleSvg}
+                alt="Google"
+                width={24}
+                height={24}
+                className={style.googleIcon}
+                priority
+              />
               Continue with Google
             </button>
           </div>
@@ -98,15 +107,16 @@ export default function Login() {
                 placeholder="Enter your password"
                 required
               />
-
               <button
                 type="button"
                 className={style.passBtn}
-                onClick={passHideShow}
+                onClick={() => setPasswordHidden(!passwordHidden)}
               >
                 <Image
                   src={passwordHidden ? showImg : hideImg}
                   alt="toggle"
+                  width={20}
+                  height={20}
                 />
               </button>
             </div>
@@ -116,10 +126,10 @@ export default function Login() {
               <a href="/signup">Sign Up</a>
             </div>
 
-            {Error && <p className={style.errorMessage}>{Error}</p>}
+            {error && <p className={style.errorMessage}>{error}</p>}
 
             <button type="submit" className={style.loginButton}>
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
           </div>
         </form>
