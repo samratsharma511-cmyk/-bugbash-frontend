@@ -71,7 +71,7 @@ export default function Course() {
                                     <svg
                                         stroke="currentColor"
                                         fill="currentColor"
-                                        stroke-width="0"
+                                        strokeWidth="0"
                                         viewBox="0 0 16 16"
                                         className="group-hover:translate-x-1 transition"
                                         height="20"
