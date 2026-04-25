@@ -1,6 +1,6 @@
-import styles from './footer.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
+import styles from "./footer.module.css";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -33,7 +33,8 @@ export default function Footer() {
                                 <Link
                                     className={styles.footerLogo}
                                     href="/"
-                                    role="link">
+                                    role="link"
+                                >
                                     <Image
                                         alt="Logo"
                                         loading="lazy"
@@ -61,7 +62,8 @@ export default function Footer() {
                                             className={styles.footerLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            role="link">
+                                            role="link"
+                                        >
                                             <Image
                                                 alt=""
                                                 loading="lazy"
@@ -74,7 +76,8 @@ export default function Footer() {
                                             />
                                             <span
                                                 className={styles.emailText}
-                                                data-cfemail="ec8489808083ac8d85c1989998839ec28d85">
+                                                data-cfemail="ec8489808083ac8d85c1989998839ec28d85"
+                                            >
                                                 [email&#160;protected]
                                             </span>
                                         </a>
@@ -83,7 +86,8 @@ export default function Footer() {
                                             href="tel:+44 20 3576 2743"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            role="link">
+                                            role="link"
+                                        >
                                             <Image
                                                 alt=""
                                                 loading="lazy"
@@ -101,7 +105,8 @@ export default function Footer() {
                                             href="https://maps.app.goo.gl/uDrZTtYafUQozgKA8"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            role="link">
+                                            role="link"
+                                        >
                                             <Image
                                                 alt=""
                                                 loading="lazy"
@@ -128,43 +133,50 @@ export default function Footer() {
                                 <a
                                     className={styles.footerLink}
                                     href="/api"
-                                    role="link">
+                                    role="link"
+                                >
                                     B2B Tutor API
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/homeworkify"
-                                    role="link">
+                                    role="link"
+                                >
                                     Homeworkify
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/free-online-courses"
-                                    role="link">
+                                    role="link"
+                                >
                                     Free Online Courses
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/whitelabel-ai-training"
-                                    role="link">
+                                    role="link"
+                                >
                                     White Label AI Training
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/ai-for-educators"
-                                    role="link">
+                                    role="link"
+                                >
                                     AI For Educators
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/ai-corporate-training"
-                                    role="link">
+                                    role="link"
+                                >
                                     AI Corporate Training
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/blog"
-                                    role="link">
+                                    role="link"
+                                >
                                     Blogs
                                 </a>
                             </div>
@@ -173,37 +185,43 @@ export default function Footer() {
                                 <a
                                     className={styles.footerLink}
                                     href="/ai-math-tutor"
-                                    role="link">
+                                    role="link"
+                                >
                                     AI Math Solver
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/ai-answer-solver"
-                                    role="link">
+                                    role="link"
+                                >
                                     AI Answer Solver
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/ai-chemistry-solver"
-                                    role="link">
+                                    role="link"
+                                >
                                     AI Chemistry Solver
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/ai-biology-solver"
-                                    role="link">
+                                    role="link"
+                                >
                                     AI Biology Solver
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/flashcards"
-                                    role="link">
+                                    role="link"
+                                >
                                     Flashcards
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/quiz-ai"
-                                    role="link">
+                                    role="link"
+                                >
                                     Quiz AI
                                 </a>
                             </div>
@@ -212,7 +230,8 @@ export default function Footer() {
                                 <a
                                     className={styles.footerLink}
                                     href="/pricing"
-                                    role="link">
+                                    role="link"
+                                >
                                     Pricing
                                 </a>
                                 <a
@@ -220,7 +239,8 @@ export default function Footer() {
                                     href="https://ai-tutor.affonso.io"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    role="link">
+                                    role="link"
+                                >
                                     Affiliate Program
                                     <svg
                                         aria-hidden="true"
@@ -234,7 +254,8 @@ export default function Footer() {
                                         strokeWidth="1.5"
                                         viewBox="0 0 24 24"
                                         width="1em"
-                                        className={styles.iconInline}>
+                                        className={styles.iconInline}
+                                    >
                                         <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                         <path d="M15 3h6v6"></path>
                                         <path d="M10 14L21 3"></path>
@@ -243,25 +264,29 @@ export default function Footer() {
                                 <a
                                     className={styles.footerLink}
                                     href="/about-us"
-                                    role="link">
+                                    role="link"
+                                >
                                     About Us
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/contact-us"
-                                    role="link">
+                                    role="link"
+                                >
                                     Contact Us
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/privacy-policy"
-                                    role="link">
+                                    role="link"
+                                >
                                     Privacy Policy
                                 </a>
                                 <a
                                     className={styles.footerLink}
                                     href="/terms-conditions"
-                                    role="link">
+                                    role="link"
+                                >
                                     Terms &amp; Conditions
                                 </a>
                             </div>
