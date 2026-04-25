@@ -12,29 +12,31 @@ export default function Faq() {
                         Learn what interests you <br />
                         in as little as 10 minutes a day
                     </h2>
-                    <div className={styles.colorBox1}>
-                        <div className={styles.grid2}>
-                            <div className={styles.flexCenter}>
-                                <Image
-                                    alt="start"
-                                    loading="lazy"
-                                    width="256"
-                                    height="256"
-                                    decoding="async"
-                                    data-nimg="1"
-                                    className={styles.largeIcon}
-                                    src="https://ai-tutor.ai/images/bg/interest-star.svg"
-                                />
-                            </div>
-                            <div className={styles.flexCol}>
-                                <h3 className={styles.heading}>
-                                    Effective, bite-sized learning
-                                </h3>
-                                <p className={styles.textMuted}>
-                                    Our AI tutor offers lessons, quizzes,
-                                    flashcards, and summaries to help you master
-                                    new skills efficiently.
-                                </p>
+                    <div className={styles.whiteBox}>
+                        <div className={styles.colorBox1}>
+                            <div className={styles.grid2}>
+                                <div className={styles.flexCenter}>
+                                    <Image
+                                        alt="start"
+                                        loading="lazy"
+                                        width="256"
+                                        height="256"
+                                        decoding="async"
+                                        data-nimg="1"
+                                        className={styles.largeIcon}
+                                        src="https://ai-tutor.ai/images/bg/interest-star.svg"
+                                    />
+                                </div>
+                                <div className={styles.flexCol}>
+                                    <h3 className={styles.heading}>
+                                        Effective, bite-sized learning
+                                    </h3>
+                                    <p className={styles.textMuted}>
+                                        Our AI tutor offers lessons, quizzes,
+                                        flashcards, and summaries to help you
+                                        master new skills efficiently.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

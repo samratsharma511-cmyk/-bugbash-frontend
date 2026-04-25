@@ -2,6 +2,7 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
+import { Star } from 'lucide-react';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -33,6 +34,24 @@ const data = [
         role: 'Student',
         text: 'Best way to practice and understand deeply.',
         img: 'https://i.pravatar.cc/100?img=4',
+    },
+    {
+        name: 'Stresth Nanwani',
+        role: 'Student',
+        text: 'The personalized study path actually keeps me on track every week.',
+        img: 'https://i.pravatar.cc/100?img=12',
+    },
+    {
+        name: 'Pulkit Singh Namdev',
+        role: 'Student',
+        text: 'I learned more in two weeks here than in months of self study.',
+        img: 'https://i.pravatar.cc/100?img=15',
+    },
+    {
+        name: 'Bhurpreet Singh',
+        role: 'Student',
+        text: 'The AI explanations make even tough topics feel simple and intuitive.',
+        img: 'https://i.pravatar.cc/100?img=33',
     },
 ];
 
@@ -70,7 +89,16 @@ export default function Review() {
                                     alt={item.name}
                                     className={styles.avatar}
                                 />
-                                <div className={styles.stars}>★★★★★</div>
+                                <div className={styles.stars}>
+                                    {Array.from({ length: 5 }).map((_, s) => (
+                                        <Star
+                                            key={s}
+                                            size={16}
+                                            fill="currentColor"
+                                            strokeWidth={0}
+                                        />
+                                    ))}
+                                </div>
                                 <p className={styles.text}>“{item.text}”</p>
                                 <h4 className={styles.name}>{item.name}</h4>
                                 <span className={styles.role}>{item.role}</span>
