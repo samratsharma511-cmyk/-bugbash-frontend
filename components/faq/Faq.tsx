@@ -8,26 +8,6 @@ export default function Faq() {
             <div className={styles.container}>
                 <section className={styles.section}>
                     <div className={styles.card}>
-                        <Image
-                            alt="trinagle"
-                            loading="lazy"
-                            width="80"
-                            height="80"
-                            decoding="async"
-                            data-nimg="1"
-                            className={styles.bgShapeTop}
-                            src="https://ai-tutor.ai/images/bg/learn-triangle.svg"
-                        />
-                        <Image
-                            alt="trinagle"
-                            loading="lazy"
-                            width="80"
-                            height="80"
-                            decoding="async"
-                            data-nimg="1"
-                            className={styles.bgShapeBottom}
-                            src="https://ai-tutor.ai/images/bg/learn-star.svg"
-                        />
                         <div className={styles.stack}>
                             <h2 className={styles.heading}>
                                 With AI Tutor, you learn at your own pace
@@ -377,10 +357,16 @@ export default function Faq() {
                                         aria-controls=":R4d7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     What is AI Tutor?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     Our new platform proposes a
                                                     new way of learning with
                                                     personalized tutoring
@@ -451,11 +437,17 @@ export default function Faq() {
                                         aria-controls=":R4l7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     How does AI Tutor
                                                     personalize the learning?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     Our AI system assesses your
                                                     learning style, strengths
                                                     and weaknesses to customize
@@ -519,11 +511,17 @@ export default function Faq() {
                                         aria-controls=":R4t7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     Which subjects does AI Tutor
                                                     cover?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     AI Tutor covers pretty much
                                                     any subject you can think
                                                     of, from Maths, to Science,
@@ -587,10 +585,16 @@ export default function Faq() {
                                         aria-controls=":R557jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     Is AI Tutor for all ages?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     Yes, AI Tutor is for all
                                                     ages, from elementary school
                                                     to college and adult
@@ -652,11 +656,17 @@ export default function Faq() {
                                         aria-controls=":R5d7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     How do I sign up for AI
                                                     Tutor?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     Click the
                                                     &quot;Generate&quot; button
                                                     at the top of this page and
@@ -719,11 +729,17 @@ export default function Faq() {
                                         aria-controls=":R5l7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     What are the subscription
                                                     plans of AI Tutor?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     We have monthly and annual
                                                     plans. Check out our Pricing
                                                     page
@@ -787,11 +803,17 @@ export default function Faq() {
                                         aria-controls=":R5t7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     Can I cancel my AI Tutor
                                                     subscription anytime?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     Yes! You can cancel anytime
                                                     through your account
                                                     settings with no
@@ -853,12 +875,18 @@ export default function Faq() {
                                         aria-controls=":R657jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     Do you offer plans for
                                                     schools, universities, or
                                                     other organizations?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     Yes. We provide custom plans
                                                     with dedicated support for
                                                     educational institutions and
@@ -924,11 +952,17 @@ export default function Faq() {
                                         aria-controls=":R6d7jt7pajaH1:">
                                         <div className={styles.flexCol}>
                                             <span className={styles.textMd}>
-                                                <h3 className={styles.faqQuestion}>
+                                                <h3
+                                                    className={
+                                                        styles.faqQuestion
+                                                    }>
                                                     What tools are included in
                                                     AI Tutor?
                                                 </h3>
-                                                <p className={styles.faqAnswerText}>
+                                                <p
+                                                    className={
+                                                        styles.faqAnswerText
+                                                    }>
                                                     AI Tutor includes an AI
                                                     tutor chat, homework helper,
                                                     content summarizer, quiz and
@@ -1025,8 +1059,7 @@ export default function Faq() {
                 </section>
             </div>
             <footer className={styles.fullWidth}>
-                <div
-                    className={styles.footerWrapper}>
+                <div className={styles.footerWrapper}>
                     <Image
                         alt=""
                         loading="lazy"

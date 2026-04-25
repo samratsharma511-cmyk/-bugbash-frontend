@@ -53,11 +53,8 @@
     gap: 2rem;
 }
 
-.grid2 {
-    grid-template-columns: repeat(2, 1fr);
-}
 
-.whiteCard {
+.whiteBox {
     background: white;
     padding: 2rem;
     border-radius: 1rem;
@@ -427,4 +424,7 @@
     padding: 16px 0;
     text-align: center;
     color: black;
+}
+.marginTop {
+    margin-top: 16px;
 }
