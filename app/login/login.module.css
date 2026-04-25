@@ -1,0 +1,208 @@
+.loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+.formLogin {
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+
+    padding: 10px;
+}
+
+.loginPageEMAIL {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+    padding: 2px;
+}
+.loginDetaisl {
+    display: flex;
+    width: 70vw;
+
+    justify-content: space-around;
+    align-items: center;
+    padding: 2px;
+}
+.loginTitle {
+    font-size: 3rem;
+    font-weight: 400;
+
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+.loginTitle:hover {
+    transform: rotate(2deg);
+    display: flex;
+    align-items: center;
+}
+
+.loginPara {
+    font-size: 1rem;
+    font-weight: 300;
+
+    margin: 0px;
+}
+.inputLogin {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+}
+.noAccSignUp {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+.loginButton {
+    background-color: black;
+    color: white;
+
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+.loginButton:hover {
+    scale: 1.01;
+    font-size: calc(auto + 4rem);
+}
+
+.textUnderLogin {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .LoginImage {
+        display: none;
+    }
+    .loginDetaisl {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 99vw;
+    }
+    .loginTitle {
+        font-size: 2rem;
+    }
+    .loginPara {
+        font-size: 0.8rem;
+    }
+    .inputLogin {
+        width: 80vw;
+    }
+    .loginButton {
+        width: 80vw;
+    }
+    .textUnderLogin {
+        font-size: 0.7rem;
+        font-weight: 300;
+
+        max-width: 80vw;
+    }
+}
+
+.LoginImage:hover {
+    border-radius: 20px;
+    scale: 1.05;
+}
+
+.contentTitel {
+    margin-bottom: 30px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 0.9rem;
+}
+
+.socialLogin {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.googleIcon {
+    width: 24px;
+}
+
+.googleButton {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border-radius: 50px;
+    padding: 10px;
+    border: 3px solid transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+
+    border: 1px solid black;
+
+    height: 45px;
+
+    margin-top: 32px;
+}
+
+.googleButton::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+    z-index: -2;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    background-color: white;
+}
+
+.googleButton:hover::before {
+    opacity: 1;
+    background-color: white;
+}
+
+.googleButton:hover {
+    border: 1px solid transparent;
+}
+
+.passBtn {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: calc(100% / 2 - 0.75rem);
+    right: 12px;
+}
+
+.passBtn img {
+    width: 100%;
+    height: 100%;
+    filter: opacity(0.5);
+}
+
+.passIn input {
+    width: 100%;
+}
+.passIn {
+    position: relative;
+}
