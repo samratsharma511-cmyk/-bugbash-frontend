@@ -6,6 +6,30 @@ import styles from './hero.module.css';
 export default function Hero() {
     return (
         <section className={styles.section}>
+            <span
+                aria-hidden="true"
+                className={`${styles.shape} ${styles.shapePinkPentagon}`}
+            />
+            <span
+                aria-hidden="true"
+                className={`${styles.shape} ${styles.shapeBlueDiamond}`}
+            />
+            <span
+                aria-hidden="true"
+                className={`${styles.shape} ${styles.shapeYellowStar}`}
+            />
+            <span
+                aria-hidden="true"
+                className={`${styles.shape} ${styles.shapeRedCircle}`}
+            />
+            <span
+                aria-hidden="true"
+                className={`${styles.shape} ${styles.shapeGreenTriangle}`}
+            />
+            <span
+                aria-hidden="true"
+                className={`${styles.shape} ${styles.shapeBluePentagon}`}
+            />
             <div className={styles.container}>
                 <h1 className={styles.heading}>
                     <span style={{ fontWeight: '100' }}>
