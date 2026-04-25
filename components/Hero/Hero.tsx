@@ -9,7 +9,7 @@ export default function Hero() {
             <div className="relative z-10 w-full max-w-[84rem] mx-auto px-5 flex flex-col items-center gap-4">
                 <h1 className="text-5xl text-center __classNameName_289dad">
                     <span className="font-extralight">
-                        Next Level AI Tutoring{' '}
+                        Next Level AI Tutoring
                     </span>
                     <br />
                     <span className="font-light">For Lifelong Learners</span>
@@ -21,7 +21,6 @@ export default function Hero() {
                 <a
                     className="tap-highlight-transparent no-underline hover:opacity-80 active:opacity-disabled transition-opacity z-0 group relative justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 [&amp;&gt;svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none data-[hover=true]:opacity-hover flex items-center gap-1.5 bg-beta rounded-3xl px-8 py-6 text-white text-sm md:text-base group my-5"
                     href="/dashboard"
-                    tabindex="0"
                     role="button">
                     Start Learning with AI
                     <svg
@@ -46,27 +45,24 @@ export default function Hero() {
                         <a
                             className="tap-highlight-transparent no-underline hover:opacity-80 active:opacity-disabled z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-20 h-10 gap-2 [&amp;&gt;svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-beta-100 border border-alpha/15 rounded-full px-3 md:px-5 py-1.5 md:py-2 hover:border-alpha/30 hover:drop-shadow-md text-sm sm:text-base transition"
                             href="/whitelabel-ai-training"
-                            tabindex="0"
                             role="button">
                             White-label
                         </a>
                         <a
                             className="tap-highlight-transparent no-underline hover:opacity-80 active:opacity-disabled z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-20 h-10 gap-2 [&amp;&gt;svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-beta-100 border border-alpha/15 rounded-full px-3 md:px-5 py-1.5 md:py-2 hover:border-alpha/30 hover:drop-shadow-md text-sm sm:text-base transition"
                             href="/ai-corporate-training"
-                            tabindex="0"
                             role="button">
                             AI for Corporate Training
                         </a>
                         <a
                             className="tap-highlight-transparent no-underline hover:opacity-80 active:opacity-disabled z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-20 h-10 gap-2 [&amp;&gt;svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-beta-100 border border-alpha/15 rounded-full px-3 md:px-5 py-1.5 md:py-2 hover:border-alpha/30 hover:drop-shadow-md text-sm sm:text-base transition"
                             href="/ai-for-educators"
-                            tabindex="0"
                             role="button">
                             AI for Educators
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center gap-3 text-beta cursor-pointer hover:drop-shadow-md">
+                {/* <div className="flex flex-col sm:flex-row items-center gap-3 text-beta cursor-pointer hover:drop-shadow-md">
                     <img
                         alt="Play"
                         fetchpriority="high"
@@ -80,7 +76,7 @@ export default function Hero() {
                     <span className="text-center text-sm sm:text-base underline font-inter font-medium">
                         AI Tutor explained in 165 seconds
                     </span>
-                </div>
+                </div> */}
             </div>
         </section>
     );
