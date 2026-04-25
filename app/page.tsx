@@ -1,7 +1,7 @@
 import Navbar from '@/components/navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import Styles from './page.module.css';
-import Faq from '@/components/faq/Faq';
+import Faq from '@/components/revew/Review';
 import Course from '@/components/course/course';
 
 export default function Home() {

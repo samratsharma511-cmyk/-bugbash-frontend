@@ -36,7 +36,7 @@ const data = [
     },
 ];
 
-export default function Faq() {
+export default function Review() {
     return (
         <section className={styles.section}>
             <h2 className={styles.title}>Loved by learners worldwide</h2>
