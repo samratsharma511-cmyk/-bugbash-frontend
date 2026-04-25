@@ -5,7 +5,10 @@ import Faq from '@/components/faq/Faq';
 
 export default function Home() {
     return (
-        <div>
+        <div
+            style={{
+                background: 'rgb(242 247 255 / var(--tw-bg-opacity, 1))',
+            }}>
             <Navbar />
 
             <div className={Styles.heroCont}>
