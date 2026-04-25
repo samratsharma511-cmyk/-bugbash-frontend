@@ -38,7 +38,8 @@ const faqs: FaqEntry[] = [
         answer: 'Yes! You can cancel anytime through your account settings with no cancellation fees.',
     },
     {
-        question: 'Do you offer plans for schools, universities, or other organizations?',
+        question:
+            'Do you offer plans for schools, universities, or other organizations?',
         answer: 'Yes. We provide custom plans with dedicated support for educational institutions and businesses. Please contact us to build a solution that fits your needs.',
     },
     {
@@ -78,14 +79,6 @@ export default function FaqAccordion() {
                                         <h3 className={styles.faqQuestion}>
                                             {faq.question}
                                         </h3>
-                                        {isOpen && (
-                                            <p
-                                                className={
-                                                    styles.faqAnswerText
-                                                }>
-                                                {faq.answer}
-                                            </p>
-                                        )}
                                     </span>
                                 </div>
                                 <span
