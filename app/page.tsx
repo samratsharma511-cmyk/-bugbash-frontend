@@ -1,24 +1,18 @@
-import Image from "next/image";
-import Navbar from "@/components/navbar/Navbar";
-import Hero from "@/components/Hero/Hero";
-import Styles from "./page.module.css"
-import Faq from "@/components/faq/Faq";
-
+import Navbar from '@/components/navbar/Navbar';
+import Hero from '@/components/Hero/Hero';
+import Styles from './page.module.css';
+import Faq from '@/components/faq/Faq';
 
 export default function Home() {
-  return (
-    <div>
+    return (
+        <div>
+            <Navbar />
 
+            <div className={Styles.heroCont}>
+                <Hero />
+            </div>
 
-<Navbar/>
-
-<div className={Styles.heroCont}>
-  <Hero/>
-</div>
-
-<Faq/>
-
-
-    </div>
-  );
+            <Faq />
+        </div>
+    );
 }

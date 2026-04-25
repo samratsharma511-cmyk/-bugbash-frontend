@@ -1,22 +1,19 @@
-.heroCont{
-
+.heroCont {
     width: 100vw;
     box-sizing: border-box;
     background-color: #f1f8ff;
 
-
-      min-height: 100vh;
-  padding-top: 100px; /* navbar offset */
-  position: relative;
-  z-index: 1;
+    min-height: 100vh;
+    padding-top: 100px; /* navbar offset */
+    position: relative;
+    z-index: 1;
 }
 
-.faqCont{
+.faqCont {
     width: 100%;
     border: 1px solid black;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
