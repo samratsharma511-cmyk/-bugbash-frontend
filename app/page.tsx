@@ -11,9 +11,7 @@ export default function Home() {
             }}>
             <Navbar />
 
-            <div className={Styles.heroCont}>
-                <Hero />
-            </div>
+            <Hero />
 
             <Faq />
         </div>
