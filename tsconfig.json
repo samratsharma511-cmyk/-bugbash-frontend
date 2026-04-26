@@ -22,13 +22,16 @@
       "@/*": ["./*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
-  ],
+"include": [
+  "next-env.d.ts",
+  "**/*.ts",
+  "**/*.tsx",
+  "**/*.d.ts",
+  ".next/types/**/*.ts",
+  ".next/dev/types/**/*.ts",
+  "**/*.mts",
+  "**/*.d.ts"
+],
   "exclude": ["node_modules"]
 }
+

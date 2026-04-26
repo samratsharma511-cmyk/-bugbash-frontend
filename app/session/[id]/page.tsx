@@ -11,7 +11,6 @@ import CodeBlock from "@/app/components/CodeBlock";
 import { useVoice } from "@/app/hooks/useVoice";
 import { speak } from "@/app/hooks/useSpeech";
 
-import AICallUI from "@/app/components/AICallUI";
 
 
 
