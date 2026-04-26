@@ -26,6 +26,14 @@ export default function SessionPage() {
   const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const [tutorStage, setTutorStage] = useState("intro");
+
+  const [studentProfile, setStudentProfile] = useState({
+    mood: "",
+    topic: "",
+    level: "",
+  });
+
   const [isMinimized, setIsMinimized] = useState(false);
   const [showPlayground, setShowPlayground] = useState(false);
 
@@ -100,7 +108,7 @@ export default function SessionPage() {
 
     try {
       const parsed = JSON.parse(stored);
-      setMessages([{ role: "ai", content: parsed }]);
+      setMessages([{ role: "ai", content: parsed }]); 
       sessionStorage.removeItem("initial_message");
     } catch (err) {
       console.error("Initial message parse error:", err);
@@ -135,19 +143,53 @@ export default function SessionPage() {
   }, []);
 
   const sendMessage = async (customMessage?: string) => {
-    const finalMessage = customMessage || message;
+  const finalMessage = (customMessage || message).trim();
+  if (!finalMessage) return;
 
-    if (!finalMessage.trim()) return;
+  const input = finalMessage.toLowerCase();
 
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", content: finalMessage },
-    ]);
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: finalMessage },
+  ]);
 
-    setMessage("");
-    setLoading(true);
+  setMessage("");
+  setLoading(true);
 
-    try {
+  let reply: any = "";
+
+  try {
+    if (tutorStage === "intro") {
+      setStudentProfile((p) => ({ ...p, mood: input }));
+
+      reply = input.includes("good")
+        ? "Nice to hear that. I'm doing great too."
+        : "I hope your day gets better. I'm here to help you.";
+
+      reply += "\n\nWhat would you like to study today?";
+      setTutorStage("topic");
+    }
+
+    else if (tutorStage === "topic") {
+      setStudentProfile((p) => ({ ...p, topic: input }));
+
+      reply = `Great choice. ${input} is an important topic.\n\nWhat's your level? (beginner / medium / advanced)`;
+      setTutorStage("level");
+    }
+
+    else if (tutorStage === "level") {
+      setStudentProfile((p) => ({ ...p, level: input }));
+
+      reply = {
+        type: "explanation",
+        explanation: `Perfect. I'll give you a ${input} level problem.\n\nCoding Question:\nMerge two sorted arrays efficiently.`,
+        code: "# write your solution here\n\ndef merge(a, b):\n    pass",
+      };
+
+      setTutorStage("question");
+    }
+
+    else {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/meet/chat/${sessionId}`,
         {
@@ -160,34 +202,44 @@ export default function SessionPage() {
       if (!res.ok) throw new Error("Chat failed");
 
       const data = await res.json();
-
-      setMessages((prev) => [
-        ...prev,
-        { role: "ai", content: data },
-      ]);
-
-      if (data?.explanation) {
-        setAiSpeaking(true);
-        await speak(data.explanation);
-        setTimeout(() => setAiSpeaking(false), 2500);
-      }
-    } catch (err) {
-      console.error(err);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "ai",
-          content: {
-            type: "explanation",
-            explanation: "Error occurred while contacting server",
-          },
-        },
-      ]);
+      reply = data;
     }
 
-    setLoading(false);
-  };
+    setMessages((prev) => [
+      ...prev,
+      { role: "ai", content: reply },
+    ]);
+
+    if (typeof reply === "object" && reply?.explanation) {
+      setAiSpeaking(true);
+      await speak(reply.explanation);
+      setTimeout(() => setAiSpeaking(false), 2500);
+    }
+
+    if (typeof reply === "string") {
+      setAiSpeaking(true);
+      await speak(reply);
+      setTimeout(() => setAiSpeaking(false), 2500);
+    }
+
+  } catch (err) {
+    console.error(err);
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "ai",
+        content: {
+          type: "explanation",
+          explanation: "Something went wrong. Let's try again.",
+        },
+      },
+    ]);
+  }
+
+  setLoading(false);
+};
+  
 
   const { start, stop, listening } = useVoice((text) => {
     const lower = text.toLowerCase();

@@ -16,24 +16,31 @@ export default function AIMessage({
   if (!ai) return null;
 
   const isCodingQuestion = (text: string) => {
+    const t = text.toLowerCase();
     return (
-      text.toLowerCase().includes("coding question") ||
-      text.toLowerCase().includes("write") ||
-      text.toLowerCase().includes("implement") ||
-      text.toLowerCase().includes("function")
+      t.includes("coding question") ||
+      t.includes("problem") ||
+      t.includes("write a function") ||
+      t.includes("implement") ||
+      t.includes("given") ||
+      t.includes("return")
     );
   };
 
   const getStarterCode = () => {
-    return `# start coding here\n\ndef solution():\n    pass`;
+    return `# start coding here
+
+def solution():
+    pass`;
   };
 
+  // ---------- STRING RESPONSE ----------
   if (typeof ai === "string") {
     const showPlayground = isCodingQuestion(ai);
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.6 }}>
+        <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7 }}>
           {ai}
         </p>
 
@@ -48,9 +55,10 @@ export default function AIMessage({
               borderRadius: 6,
               cursor: "pointer",
               width: "fit-content",
+              marginTop: 6,
             }}
           >
-            Open Coding Playground
+            Start Solving
           </button>
         )}
       </div>
@@ -60,43 +68,54 @@ export default function AIMessage({
   const type = ai.type || "explanation";
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       
+      {/* ---------- EXPLANATION ---------- */}
       {type === "explanation" && (
         <>
-          <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.6 }}>
+          <div style={{ fontSize: 13, color: "#60a5fa" }}>
+            Tutor
+          </div>
+
+          <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7 }}>
             {ai.explanation}
           </p>
 
-          <button
-            onClick={() =>
-              onOpenPlayground?.(
-                ai.code || "# start coding here\n\ndef solution():\n    pass"
-              )
-            }
-            style={{
-              background: "#22c55e",
-              color: "white",
-              border: "none",
-              padding: "8px 12px",
-              borderRadius: 6,
-              cursor: "pointer",
-              width: "fit-content",
-            }}
-          >
-            Open Playground
-          </button>
+          {(ai.code || isCodingQuestion(ai.explanation)) && (
+            <button
+              onClick={() =>
+                onOpenPlayground?.(ai.code || getStarterCode())
+              }
+              style={{
+                background: "#22c55e",
+                color: "white",
+                border: "none",
+                padding: "8px 12px",
+                borderRadius: 6,
+                cursor: "pointer",
+                width: "fit-content",
+              }}
+            >
+              Start Solving
+            </button>
+          )}
         </>
       )}
 
+      {/* ---------- CODE ---------- */}
       {type === "code" && (
         <>
+          <div style={{ fontSize: 13, color: "#60a5fa" }}>
+            Code
+          </div>
+
           <pre
             style={{
               background: "#0f172a",
               padding: 12,
               borderRadius: 8,
               overflowX: "auto",
+              fontSize: 13,
             }}
           >
             <code>{ai.code}</code>
@@ -119,23 +138,26 @@ export default function AIMessage({
         </>
       )}
 
+      {/* ---------- SUBMISSION FEEDBACK ---------- */}
       {type === "submission_feedback" && (
         <>
-          <p
+          <div
             style={{
               color: ai.status === "Accepted" ? "#22c55e" : "#ef4444",
-              fontWeight: 500,
+              fontWeight: 600,
             }}
           >
             {ai.status}
-          </p>
+          </div>
 
-          <p style={{ whiteSpace: "pre-wrap" }}>
+          <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7 }}>
             {ai.explanation}
           </p>
 
           <button
-            onClick={() => onOpenPlayground?.(ai.code || getStarterCode())}
+            onClick={() =>
+              onOpenPlayground?.(ai.code || getStarterCode())
+            }
             style={{
               background: "#3b82f6",
               color: "white",
@@ -146,11 +168,12 @@ export default function AIMessage({
               width: "fit-content",
             }}
           >
-            Retry in Playground
+            Try Again
           </button>
         </>
       )}
 
+      {/* ---------- SUGGESTIONS ---------- */}
       {ai.suggestions?.map((s: string, i: number) => (
         <button
           key={i}
