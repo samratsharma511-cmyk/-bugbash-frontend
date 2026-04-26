@@ -10,41 +10,40 @@ type FaqEntry = {
 
 const faqs: FaqEntry[] = [
     {
-        question: 'What is AI Tutor?',
-        answer: "Our new platform proposes a new way of learning with personalized tutoring empowered by AI, to help you learn better, regardless if you're a student, a creative selling your own courses, or a professional looking to upskill.",
+        question: 'What is this DSA platform?',
+        answer: 'This platform helps you learn Data Structures and Algorithms through structured coding assignments, quizzes, and real problem-solving practice.',
     },
     {
-        question: 'How does AI Tutor personalize the learning?',
-        answer: 'Our AI system assesses your learning style, strengths and weaknesses to customize lessons and practice exercises.',
+        question: 'How does the AI help me learn DSA?',
+        answer: 'The AI analyzes your performance, suggests problems based on your level, and guides you with hints and explanations to improve your understanding.',
     },
     {
-        question: 'Which subjects does AI Tutor cover?',
-        answer: 'AI Tutor covers pretty much any subject you can think of, from Maths, to Science, English, Physics, and more, for all levels.',
+        question: 'Are the assignments beginner-friendly?',
+        answer: 'Yes, assignments start from basic concepts like arrays and progress to advanced topics like dynamic programming and graphs.',
     },
     {
-        question: 'Is AI Tutor for all ages?',
-        answer: 'Yes, AI Tutor is for all ages, from elementary school to college and adult learners.',
+        question: 'Do I get coding practice?',
+        answer: 'Absolutely. You will solve real coding problems similar to interview questions with increasing difficulty levels.',
     },
     {
-        question: 'How do I sign up for AI Tutor?',
-        answer: 'Click the "Generate" button at the top of this page and follow the simple sign up process.',
+        question: 'How do quizzes work?',
+        answer: 'Quizzes test your conceptual understanding of DSA topics and help reinforce what you learn through coding assignments.',
     },
     {
-        question: 'What are the subscription plans of AI Tutor?',
-        answer: 'We have monthly and annual plans. Check out our Pricing page [https://ai-tutor.ai/pricing] for details.',
+        question: 'Can I track my progress?',
+        answer: 'Yes, you can track your solved problems, accuracy, and improvement over time as you complete assignments and quizzes.',
     },
     {
-        question: 'Can I cancel my AI Tutor subscription anytime?',
-        answer: 'Yes! You can cancel anytime through your account settings with no cancellation fees.',
+        question: 'Is this useful for coding interviews?',
+        answer: 'Yes, the platform is designed to prepare you for technical interviews by focusing on commonly asked DSA problems.',
     },
     {
-        question:
-            'Do you offer plans for schools, universities, or other organizations?',
-        answer: 'Yes. We provide custom plans with dedicated support for educational institutions and businesses. Please contact us to build a solution that fits your needs.',
+        question: 'Do I need prior coding experience?',
+        answer: 'Basic programming knowledge is helpful, but the platform guides you step by step from beginner to advanced levels.',
     },
     {
-        question: 'What tools are included in AI Tutor?',
-        answer: 'AI Tutor includes an AI tutor chat, homework helper, content summarizer, quiz and flashcard generator, and a course generator, all designed to help you learn faster and more effectively.',
+        question: 'Can I practice daily?',
+        answer: 'Yes, the platform is designed for daily practice with short assignments and quizzes to build consistency.',
     },
 ];
 

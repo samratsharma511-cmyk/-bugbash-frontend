@@ -69,7 +69,7 @@ export default function Course() {
                                 fill="currentColor"
                                 strokeWidth="0"
                                 viewBox="0 0 16 16"
-                                className="group-hover:translate-x-1 transition"
+                                className={styles.buttonIcon}
                                 height="20"
                                 width="20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +81,7 @@ export default function Course() {
                     </div>
                 </div>
             </div>
-            <div className="w-full mx-auto">
+            <div className={styles.fullWidth}>
                 <div className={styles.card}>
                     <div className={styles.grid}>
                         <div className={styles.leftContent}>
@@ -93,7 +93,7 @@ export default function Course() {
                                 advanced and build strong problem-solving
                                 skills.
                             </p>
-                            <div className="flex pt-3">
+                            <div className={styles.buttonRow}>
                                 <Link
                                     className={styles.button}
                                     href="/dashboard">
@@ -103,7 +103,7 @@ export default function Course() {
                                         fill="currentColor"
                                         strokeWidth="0"
                                         viewBox="0 0 16 16"
-                                        className="group-hover:translate-x-1 transition"
+                                        className={styles.buttonIcon}
                                         height="20"
                                         width="20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +115,7 @@ export default function Course() {
                             </div>
                         </div>
                         <div className={styles.courseList}>
-                            <div className="flex flex-col gap-3">
+                            <div className={styles.courseItems}>
                                 {assignments.map((item, index) => (
                                     <Link
                                         key={index}

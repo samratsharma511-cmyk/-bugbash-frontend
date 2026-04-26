@@ -9,8 +9,8 @@ export default function Faq() {
             <section className={styles.fullWidth}>
                 <div className={styles.bannerContainer}>
                     <h2 className={styles.heading}>
-                        Learn what interests you <br />
-                        in as little as 10 minutes a day
+                        Master Data Structures & Algorithms <br />
+                        with coding assignments and quizzes
                     </h2>
                     <div className={styles.colorBox1}>
                         <div className={styles.grid2}>
@@ -28,12 +28,12 @@ export default function Faq() {
                             </div>
                             <div className={styles.flexCol}>
                                 <h3 className={styles.heading}>
-                                    Effective, bite-sized learning
+                                    Structured DSA learning paths
                                 </h3>
                                 <p className={styles.textMuted}>
-                                    Our AI tutor offers lessons, quizzes,
-                                    flashcards, and summaries to help you master
-                                    new skills efficiently.
+                                    Practice DSA through guided coding assignments,
+                                    quizzes, and real problem-solving challenges
+                                    designed to build strong fundamentals.
                                 </p>
                             </div>
                         </div>
@@ -43,12 +43,12 @@ export default function Faq() {
                             <div className={styles.grid2}>
                                 <div className={styles.flexCol}>
                                     <h3 className={styles.heading}>
-                                        Inspired learning, affordable pricing
+                                        Consistent practice, real improvement
                                     </h3>
                                     <p className={styles.textMuted}>
-                                        Personal tutoring is not a luxury
-                                        anymore. Start your journey for as
-                                        little as the price of a cup of coffee.
+                                        Solve problems daily, track your progress,
+                                        and improve your problem-solving skills
+                                        step by step with structured assignments.
                                     </p>
                                 </div>
                                 <div>
@@ -83,13 +83,12 @@ export default function Faq() {
                                 </div>
                                 <div className={styles.flexCol}>
                                     <h3 className={styles.heading}>
-                                        Real-life skill assessments
+                                        Real coding skill evaluation
                                     </h3>
                                     <p className={styles.textMuted}>
-                                        Sharpen your skills with personalized
-                                        guidance, practice, and review. Our AI
-                                        tutor adapts to your level and supports
-                                        you as you grow.
+                                        Get evaluated based on real coding performance,
+                                        receive feedback, and level up your DSA skills
+                                        with adaptive difficulty.
                                     </p>
                                 </div>
                             </div>
@@ -100,12 +99,12 @@ export default function Faq() {
                             <div className={styles.grid2}>
                                 <div className={styles.flexCol}>
                                     <h3 className={styles.heading}>
-                                        Fit learning into your work-life balance
+                                        Daily DSA practice made simple
                                     </h3>
                                     <p className={styles.textMuted}>
-                                        Access TutorAI on your preferred device
-                                        and turn spare moments into powerful
-                                        learning opportunities.
+                                        Practice anytime, anywhere with short coding
+                                        assignments and quizzes that fit into your
+                                        daily routine.
                                     </p>
                                 </div>
                                 <div>
@@ -131,7 +130,7 @@ export default function Faq() {
                 id="faq-section">
                 <div className={styles.faqContainer}>
                     <h2 id="faq-heading" className={styles.heading}>
-                        Frequently Asked Questions About AI Tutor
+                        Frequently Asked Questions About DSA Practice
                     </h2>
                     <FaqAccordion />
                 </div>
@@ -160,16 +159,15 @@ export default function Faq() {
                     />
                     <div className={styles.flexColCenter}>
                         <h2 className={styles.heading}>
-                            Effective lessons, big results. <br />
-                            Start learning with AI Tutor today!
+                            Solve daily DSA challenges. <br />
+                            Start your coding journey today!
                         </h2>
                         <div className={styles.ctaWrapper}>
-                            <a
+                            <Link
                                 className={styles.ctaButton}
-                                href="/dashboard"
-                                role="button">
+                                href="/dsa">
                                 Get started
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

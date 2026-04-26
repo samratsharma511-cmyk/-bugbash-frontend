@@ -8,9 +8,9 @@ import Image from 'next/image';
 const navItems = [
     { label: 'Home', href: '/' },
     // { label: 'Pricing', href: '/pricing' },
+    { label: 'About', href: '/about' },
     { label: 'Reviews', href: '/#reviews' },
     { label: 'FAQ', href: '/#Faq' },
-    // { label: 'About', href: '/about-us' },
 ];
 
 export default function Navbar() {

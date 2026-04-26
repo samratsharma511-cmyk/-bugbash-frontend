@@ -46,12 +46,11 @@ export default function Footer() {
                                         src="https://ai-tutor.ai/icons/AI Tutor Logo.svg"
                                     />
                                     <div className={styles.logoText}>
-                                        TutorAI
+                                        DSA AI
                                     </div>
                                 </Link>
                                 <p className={styles.textMuted}>
-                                    Next level AI tutoring for life-long
-                                    learners
+                                    Practice Data Structures & Algorithms with AI-powered assignments, quizzes, and real coding challenges.
                                 </p>
                                 <div className={styles.marginTop}>
                                     <div className={styles.footerTitle}>
@@ -76,9 +75,8 @@ export default function Footer() {
                                             />
                                             <span
                                                 className={styles.emailText}
-                                                data-cfemail="ec8489808083ac8d85c1989998839ec28d85"
                                             >
-                                                [email&#160;protected]
+                                                support@dsa-ai.com
                                             </span>
                                         </a>
                                         <a
@@ -130,48 +128,24 @@ export default function Footer() {
                                 <div className={styles.footerTitle}>
                                     Products
                                 </div>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/api"
-                                    role="link"
-                                >
-                                    B2B Tutor API
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/homeworkify"
-                                    role="link"
-                                >
-                                    Homeworkify
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/free-online-courses"
-                                    role="link"
-                                >
-                                    Free Online Courses
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/whitelabel-ai-training"
-                                    role="link"
-                                >
-                                    White Label AI Training
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/ai-for-educators"
-                                    role="link"
-                                >
-                                    AI For Educators
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/ai-corporate-training"
-                                    role="link"
-                                >
-                                    AI Corporate Training
-                                </a>
+                                <Link className={styles.footerLink} href="/dsa">
+                                    DSA Sheet
+                                </Link>
+                                <Link className={styles.footerLink} href="/assignments">
+                                    Coding Assignments
+                                </Link>
+                                <Link className={styles.footerLink} href="/quizzes">
+                                    DSA Quizzes
+                                </Link>
+                                <Link className={styles.footerLink} href="/progress">
+                                    Track Progress
+                                </Link>
+                                <Link className={styles.footerLink} href="/interview-prep">
+                                    Interview Prep
+                                </Link>
+                                <Link className={styles.footerLink} href="/roadmap">
+                                    DSA Roadmap
+                                </Link>
                                 <a
                                     className={styles.footerLink}
                                     href="/blog"
@@ -182,48 +156,21 @@ export default function Footer() {
                             </div>
                             <div className={styles.footerCol}>
                                 <div className={styles.footerTitle}>Tools</div>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/ai-math-tutor"
-                                    role="link"
-                                >
-                                    AI Math Solver
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/ai-answer-solver"
-                                    role="link"
-                                >
-                                    AI Answer Solver
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/ai-chemistry-solver"
-                                    role="link"
-                                >
-                                    AI Chemistry Solver
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/ai-biology-solver"
-                                    role="link"
-                                >
-                                    AI Biology Solver
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/flashcards"
-                                    role="link"
-                                >
+                                <Link className={styles.footerLink} href="/playground">
+                                    Code Playground
+                                </Link>
+                                <Link className={styles.footerLink} href="/visualizer">
+                                    Algorithm Visualizer
+                                </Link>
+                                <Link className={styles.footerLink} href="/compiler">
+                                    Online Compiler
+                                </Link>
+                                <Link className={styles.footerLink} href="/flashcards">
                                     Flashcards
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/quiz-ai"
-                                    role="link"
-                                >
-                                    Quiz AI
-                                </a>
+                                </Link>
+                                <Link className={styles.footerLink} href="/quiz">
+                                    Quiz Practice
+                                </Link>
                             </div>
                             <div className={styles.footerCol}>
                                 <div className={styles.footerTitle}>About</div>
@@ -232,7 +179,7 @@ export default function Footer() {
                                     href="/pricing"
                                     role="link"
                                 >
-                                    Pricing
+                                    Plans & Pricing
                                 </a>
                                 <a
                                     className={styles.footerLink}
@@ -292,7 +239,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className={styles.footerBottom}>
-                            <p>© AI Tutor 2025 | All Rights Reserved</p>
+                            <p>© DSA AI 2026 | Built for coders</p>
                         </div>
                     </div>
                 </div>

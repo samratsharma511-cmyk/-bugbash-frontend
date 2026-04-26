@@ -83,6 +83,24 @@
     opacity: 0.9;
 }
 
+.buttonIcon {
+    transition: transform 0.2s ease;
+}
+
+.button:hover .buttonIcon {
+    transform: translateX(0.25rem);
+}
+
+.fullWidth {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.buttonRow {
+    display: flex;
+    padding-top: 0.75rem;
+}
+
 /* CARD */
 .card {
     background: #fff;
@@ -123,6 +141,12 @@
     background: #eef4ff;
     padding: 1.5rem;
     border-radius: 1rem;
+}
+
+.courseItems {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .courseItem {
