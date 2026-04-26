@@ -52,7 +52,7 @@ export default function FaqAccordion() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <div className={styles.flexCol} data-orientation="vertical">
+        <div className={styles.flexCol} data-orientation="vertical" id='Faq'>
             {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
                 const buttonId = `faq-button-${index}`;

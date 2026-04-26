@@ -2,6 +2,34 @@ import Link from 'next/link';
 import styles from './course.module.css';
 import Image from 'next/image';
 
+const assignments = [
+    {
+        title: 'Arrays Basics',
+        level: 'Easy',
+        href: '/dsa/arrays-basics',
+    },
+    {
+        title: 'Binary Search',
+        level: 'Medium',
+        href: '/dsa/binary-search',
+    },
+    {
+        title: 'Linked List Fundamentals',
+        level: 'Medium',
+        href: '/dsa/linked-list',
+    },
+    {
+        title: 'Stacks & Queues',
+        level: 'Medium',
+        href: '/dsa/stacks-queues',
+    },
+    {
+        title: 'Dynamic Programming Intro',
+        level: 'Hard',
+        href: '/dsa/dp-intro',
+    },
+];
+
 export default function Course() {
     return (
         <section className={styles.section}>
@@ -27,13 +55,14 @@ export default function Course() {
                 />
                 <div className={styles.heroContent}>
                     <h2 className={styles.heroTitle}>
-                        With AI Tutor, you learn at your own pace
+                        Master DSA with structured assignments
                         <br />
-                        using tutoring, quizzes, and summaries. <br />
-                        Start Using AI Tools <br />
+                        practice problems, track progress, and improve daily.{' '}
+                        <br />
+                        Start Solving Now <br />
                     </h2>
                     <div className={styles.centerFlex}>
-                        <a className={styles.button} href="/dashboard">
+                        <Link className={styles.button} href="/dsa">
                             View AI Tools
                             <svg
                                 stroke="currentColor"
@@ -48,7 +77,7 @@ export default function Course() {
                                     fillRule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
                             </svg>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -57,16 +86,17 @@ export default function Course() {
                     <div className={styles.grid}>
                         <div className={styles.leftContent}>
                             <h2 className={styles.sectionTitle}>
-                                Interactive courses built to fit your goals
+                                DSA Assignments tailored for your growth
                             </h2>
                             <p className={styles.sectionText}>
-                                Create a custom learning pathway to help you
-                                achieve more in school, work, and life.
+                                Solve curated DSA problems from beginner to
+                                advanced and build strong problem-solving
+                                skills.
                             </p>
                             <div className="flex pt-3">
-                                <a
+                                <Link
                                     className={styles.button}
-                                    href="/free-online-courses">
+                                    href="/dashboard">
                                     View Other Courses
                                     <svg
                                         stroke="currentColor"
@@ -81,125 +111,35 @@ export default function Course() {
                                             fillRule="evenodd"
                                             d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className={styles.courseList}>
                             <div className="flex flex-col gap-3">
-                                <a
-                                    className={styles.courseItem}
-                                    href="/course/fundamentals-of-machine-learning-for-beginners">
-                                    <Image
-                                        alt="play"
-                                        loading="lazy"
-                                        width="20"
-                                        height="20"
-                                        decoding="async"
-                                        data-nimg="1"
-                                        className={styles.icon}
-                                        src="https://ai-tutor.ai/icons/play-blue-alpha.svg"
-                                    />
-                                    <div className={styles.courseText}>
-                                        <h3 className={styles.courseTitle}>
-                                            Fundamentals of Machine Learning for
-                                            Beginners
-                                        </h3>
-                                        <p className={styles.courseLevel}>
-                                            Beginner
-                                        </p>
-                                    </div>
-                                </a>
-                                <a
-                                    className={styles.courseItem}
-                                    href="/course/french-grammar-as-a-second-language-intermediate-level">
-                                    <Image
-                                        alt="play"
-                                        loading="lazy"
-                                        width="20"
-                                        height="20"
-                                        decoding="async"
-                                        data-nimg="1"
-                                        className={styles.icon}
-                                        src="https://ai-tutor.ai/icons/play-blue-alpha.svg"
-                                    />
-                                    <div className={styles.courseText}>
-                                        <h3 className={styles.courseTitle}>
-                                            Intermediate French Grammar
-                                        </h3>
-                                        <p className={styles.courseLevel}>
-                                            Beginner
-                                        </p>
-                                    </div>
-                                </a>
-                                <a
-                                    className={styles.courseItem}
-                                    href="/course/productivity-mastery-getting-things-done-in-the-digital-age">
-                                    <Image
-                                        alt="play"
-                                        loading="lazy"
-                                        width="20"
-                                        height="20"
-                                        decoding="async"
-                                        data-nimg="1"
-                                        className={styles.icon}
-                                        src="https://ai-tutor.ai/icons/play-blue-alpha.svg"
-                                    />
-                                    <div className={styles.courseText}>
-                                        <h3 className={styles.courseTitle}>
-                                            Productivity Mastery: Getting Things
-                                            Done in the Digital Age
-                                        </h3>
-                                        <p className={styles.courseLevel}>
-                                            Beginner
-                                        </p>
-                                    </div>
-                                </a>
-                                <a
-                                    className={styles.courseItem}
-                                    href="/course/mindfulness-and-stress-management-for-professionals">
-                                    <Image
-                                        alt="play"
-                                        loading="lazy"
-                                        width="20"
-                                        height="20"
-                                        decoding="async"
-                                        data-nimg="1"
-                                        className={styles.icon}
-                                        src="https://ai-tutor.ai/icons/play-blue-alpha.svg"
-                                    />
-                                    <div className={styles.courseText}>
-                                        <h3 className={styles.courseTitle}>
-                                            Mindfulness and Stress Management
-                                            for Professionals
-                                        </h3>
-                                        <p className={styles.courseLevel}>
-                                            Beginner
-                                        </p>
-                                    </div>
-                                </a>
-                                <a
-                                    className={styles.courseItem}
-                                    href="/course/creative-writing-workshop-crafting-compelling-stories">
-                                    <Image
-                                        alt="play"
-                                        loading="lazy"
-                                        width="20"
-                                        height="20"
-                                        decoding="async"
-                                        data-nimg="1"
-                                        className={styles.icon}
-                                        src="https://ai-tutor.ai/icons/play-blue-alpha.svg"
-                                    />
-                                    <div className={styles.courseText}>
-                                        <h3 className={styles.courseTitle}>
-                                            Creative Writing Workshop: Crafting
-                                            Compelling Stories
-                                        </h3>
-                                        <p className={styles.courseLevel}>
-                                            Beginner
-                                        </p>
-                                    </div>
-                                </a>
+                                {assignments.map((item, index) => (
+                                    <Link
+                                        key={index}
+                                        className={styles.courseItem}
+                                        href={item.href}>
+                                        <Image
+                                            alt="play"
+                                            loading="lazy"
+                                            width="20"
+                                            height="20"
+                                            decoding="async"
+                                            className={styles.icon}
+                                            src="https://ai-tutor.ai/icons/play-blue-alpha.svg"
+                                        />
+                                        <div className={styles.courseText}>
+                                            <h3 className={styles.courseTitle}>
+                                                {item.title}
+                                            </h3>
+                                            <p className={styles.courseLevel}>
+                                                {item.level}
+                                            </p>
+                                        </div>
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
