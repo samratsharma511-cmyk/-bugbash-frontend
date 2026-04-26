@@ -19,6 +19,14 @@
     z-index: 0;
 }
 
+@media (max-width: 640px) {
+    .section::before,
+    .section::after {
+        width: 22vw;
+        opacity: 0.55;
+    }
+}
+
 .section::before {
     left: 0;
     background-position: 0;
@@ -51,14 +59,17 @@
 }
 
 .heading {
-    font-size: 3rem;
+    font-size: clamp(1.75rem, 6vw, 3rem);
     text-align: center;
+    line-height: 1.15;
+    margin: 0;
 }
 
 .subtext {
     max-width: 28rem;
     padding: 0 1rem;
     text-align: center;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
 }
 
 .primaryButton {
@@ -88,17 +99,12 @@
 }
 
 .businessSection {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 2rem;
-}
-
-@media (min-width: 768px) {
-    .businessSection {
-        display: flex;
-    }
+    padding: 0 0.5rem;
 }
 
 .businessTitle {
