@@ -180,7 +180,7 @@ export default function Playground({
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:9000/playgrounds/${playgroundId}/run`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/playgrounds/${playgroundId}/run`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -215,7 +215,7 @@ export default function Playground({
     setSubmitting(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:9000/submit", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -234,7 +234,7 @@ export default function Playground({
       let status = data.submission?.status || "Unknown";
 
       if (status === "Accepted") {
-        const aiRes = await fetch("http://127.0.0.1:9000/analyze-solution", {
+        const aiRes = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/analyze-solution`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -334,7 +334,7 @@ export default function Playground({
                 }
 
                 if (playgroundId) {
-                  fetch(`http://127.0.0.1:9000/playgrounds/${playgroundId}`, {
+                  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/playgrounds/${playgroundId}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ code: newCode }),

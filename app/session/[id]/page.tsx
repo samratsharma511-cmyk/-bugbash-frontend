@@ -55,7 +55,7 @@ export default function SessionPage() {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:9000/questions");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`);
         const data = await res.json();
 
         if (data.length > 0) {
@@ -71,7 +71,7 @@ export default function SessionPage() {
 
   const createPlayground = async (code?: string) => {
     try {
-      const res = await fetch("http://127.0.0.1:9000/playgrounds/", {
+      const res = await fetch(`{process.env.NEXT_PUBLIC_BACKEND_URL}/playgrounds/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
