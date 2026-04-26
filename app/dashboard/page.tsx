@@ -1,15 +1,18 @@
+'use client';
 import styles from './dashboard.module.css';
 import Navbar from './components/navbar/Navbar';
 import Body from './components/body/Body';
+import { useState } from 'react';
 
 export default function Dashboard() {
+    const [hamburgerOpen, sethamburgerOpen] = useState(true);
     return (
-        <div
-            style={{
-                background: 'rgb(242 247 255)',
-            }}>
-            <Navbar />
-            <Body />
+        <div>
+            <Navbar
+                hamburgerOpen={hamburgerOpen}
+                sethamburgerOpen={sethamburgerOpen}
+            />
+            <Body hamburgerOpen={hamburgerOpen} />
         </div>
     );
 }

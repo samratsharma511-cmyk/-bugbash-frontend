@@ -2,8 +2,17 @@ import styles from './navbar.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import image from '@/public/logo.png';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function Navbar() {
+interface navInterface {
+    hamburgerOpen: boolean;
+    sethamburgerOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function Navbar({
+    hamburgerOpen,
+    sethamburgerOpen,
+}: navInterface) {
     const now = new Date();
 
     const time = now
@@ -28,8 +37,13 @@ export default function Navbar() {
     return (
         <div className={styles.navbar}>
             <div className={styles.sideNavbar}>
-                {/* <div className={styles.hamburger}>☰</div> */}
-                {/* <div>Navbar</div>  */}
+                <div
+                    className={styles.hamburger}
+                    onClick={() => {
+                        sethamburgerOpen(!hamburgerOpen);
+                    }}>
+                    ☰
+                </div>
                 <Link className={styles.logo} href="/">
                     <div className={styles.logoWrapper}>
                         <Image src={image} width={30} height={32} alt="Logo" />
@@ -41,13 +55,13 @@ export default function Navbar() {
             <div className={styles.rightSection}>
                 <p>{result}</p>
 
-                <div className={styles.avatarWrapper}>
+                {/* <div className={styles.avatarWrapper}>
                     <img
                         className={styles.gengar}
                         src="https://media.pocketgamer.biz/images/112645/77243/pokemonunitegengar_s470.jpg"
                         alt="avatar"
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );

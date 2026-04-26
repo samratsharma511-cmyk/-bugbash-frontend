@@ -13,12 +13,12 @@
     margin: 0;
     border-radius: 5px;
 }
-.logo:hover {
+/* .logo:hover {
     background: #e9f0ff;
 }
 .logo:hover .logoWrapper .logoText {
     color: #1a73e8;
-}
+} */
 
 .logoWrapper {
     display: flex;
