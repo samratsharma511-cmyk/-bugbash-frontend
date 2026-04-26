@@ -11,15 +11,9 @@ import CodeBlock from "@/app/components/CodeBlock";
 import { useVoice } from "@/app/hooks/useVoice";
 import { speak } from "@/app/hooks/useSpeech";
 
-import {
-  Mic,
-  MicOff,
-  VideoOff,
-  Captions,
-  MonitorUp,
-  MoreVertical,
-  PhoneOff,
-} from "lucide-react";
+
+
+
 
 export default function SessionPage() {
   const params = useParams();
@@ -53,6 +47,7 @@ export default function SessionPage() {
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  // ✅ Fetch question
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
@@ -64,12 +59,15 @@ export default function SessionPage() {
           setQuestion(q);
           setQuestionId(q.id);
         }
-      } catch {}
+      } catch (err) {
+        console.error("Question fetch error:", err);
+      }
     };
 
     fetchQuestion();
   }, []);
 
+  // ✅ Create playground
   const createPlayground = async (code?: string) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/playgrounds/`, {
@@ -87,10 +85,11 @@ export default function SessionPage() {
         }),
       });
 
-      if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error("Playground creation failed");
 
       return await res.json();
-    } catch {
+    } catch (err) {
+      console.error(err);
       return null;
     }
   };
@@ -103,7 +102,9 @@ export default function SessionPage() {
       const parsed = JSON.parse(stored);
       setMessages([{ role: "ai", content: parsed }]);
       sessionStorage.removeItem("initial_message");
-    } catch {}
+    } catch (err) {
+      console.error("Initial message parse error:", err);
+    }
   }, []);
 
   useEffect(() => {
@@ -156,6 +157,8 @@ export default function SessionPage() {
         }
       );
 
+      if (!res.ok) throw new Error("Chat failed");
+
       const data = await res.json();
 
       setMessages((prev) => [
@@ -163,19 +166,21 @@ export default function SessionPage() {
         { role: "ai", content: data },
       ]);
 
-      if (data.explanation) {
+      if (data?.explanation) {
         setAiSpeaking(true);
         await speak(data.explanation);
         setTimeout(() => setAiSpeaking(false), 2500);
       }
-    } catch {
+    } catch (err) {
+      console.error(err);
+
       setMessages((prev) => [
         ...prev,
         {
           role: "ai",
           content: {
             type: "explanation",
-            explanation: "Error occurred",
+            explanation: "Error occurred while contacting server",
           },
         },
       ]);
@@ -382,6 +387,7 @@ export default function SessionPage() {
           )}
         </div>
 
+        {/* CHAT */}
         <div className={styles.chatArea}>
           {messages.map((msg, index) => (
             <div key={index} className={styles.messageRow}>
@@ -431,6 +437,7 @@ export default function SessionPage() {
           <div ref={bottomRef} />
         </div>
 
+        {/* INPUT */}
         <div className={styles.inputArea}>
           <input
             className={styles.input}
