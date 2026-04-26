@@ -6,12 +6,12 @@ import { Dispatch, SetStateAction } from 'react';
 
 interface navInterface {
     hamburgerOpen: boolean;
-    sethamburgerOpen: Dispatch<SetStateAction<boolean>>;
+    setHamburgerOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Navbar({
     hamburgerOpen,
-    sethamburgerOpen,
+    setHamburgerOpen,
 }: navInterface) {
     const now = new Date();
 
@@ -40,7 +40,7 @@ export default function Navbar({
                 <div
                     className={styles.hamburger}
                     onClick={() => {
-                        sethamburgerOpen(!hamburgerOpen);
+                        setHamburgerOpen(!hamburgerOpen);
                     }}>
                     ☰
                 </div>
