@@ -147,7 +147,7 @@ export default function SessionPage() {
 
     try {
       const res = await fetch(
-        `http://localhost:8000/chat/${sessionId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/meet/chat/${sessionId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

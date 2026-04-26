@@ -139,7 +139,7 @@ export default function Playground({
       try {
         setLoadingHint(true);
 
-        const res = await fetch("http://localhost:8000/analyze-code", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/analyze-code`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -160,7 +160,7 @@ export default function Playground({
 
   const highlightErrors = async () => {
     try {
-      const res = await fetch("http://localhost:8000/analyze-lines", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/analyze-lines`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code: editorCode }),
