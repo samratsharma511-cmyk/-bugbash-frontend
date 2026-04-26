@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import {
+  Bookmark,
   ChevronLeft,
-  ClipboardList,
   Eye,
   FolderClosed,
   GripVertical,
+  Info,
   Loader2,
   Maximize2,
   Play,
@@ -29,14 +30,15 @@ type LanguageKey = "python" | "javascript" | "typescript" | "c" | "cpp";
 type QuestionData = {
   id: number;
   title: string;
-  difficulty: "easy" | "medium" | "hard" | string;
   description: string;
   input_format?: string;
   output_format?: string;
   constraints?: string;
   example?: string;
-  time_limit?: string | number;
-  memory_limit?: string | number;
+  explanation?: string;
+  difficulty?: string;
+  tags?: string;
+  max_marks?: number;
   starter_code?: Partial<Record<LanguageKey, string>>;
 };
 
@@ -44,10 +46,11 @@ type SubmissionCase = {
   title: string;
   input?: string;
   output?: string;
+  expected_output?: string;
   status?: string;
+  error?: string;
   time?: number | string;
   memory?: number | string;
-  expected_output?: string;
   is_hidden?: boolean;
 };
 
@@ -63,14 +66,6 @@ type SubmissionRecord = {
   created_at?: string;
   results?: SubmissionCase[];
   isPending?: boolean;
-};
-
-type RunResult = {
-  output?: string;
-  error?: string;
-  stdout?: string;
-  stderr?: string;
-  compile_output?: string;
 };
 
 type ActiveTab = "input" | "output" | "error";
@@ -91,14 +86,15 @@ const LANGUAGE_OPTIONS: { label: string; value: LanguageKey }[] = [
 const EMPTY_QUESTION: QuestionData = {
   id: 0,
   title: "Question",
-  difficulty: "easy",
   description: "",
   input_format: "",
   output_format: "",
   constraints: "",
   example: "",
-  time_limit: 2,
-  memory_limit: 256000,
+  explanation: "",
+  difficulty: "easy",
+  tags: "",
+  max_marks: undefined,
   starter_code: {
     python: "# start code here",
   },
@@ -110,7 +106,13 @@ function sanitizeText(value?: string | null) {
   return value;
 }
 
-function normalizeRunResult(result: RunResult) {
+function normalizeRunResult(result: {
+  output?: string;
+  error?: string;
+  stdout?: string;
+  stderr?: string;
+  compile_output?: string;
+}) {
   return {
     output: sanitizeText(result.output ?? result.stdout ?? ""),
     error: sanitizeText(result.error ?? result.stderr ?? result.compile_output ?? ""),
@@ -127,6 +129,33 @@ function getStarterCode(question: QuestionData, language: LanguageKey) {
 
 function getDraftKey(questionId: string | number | undefined) {
   return `question-draft:${questionId ?? "default"}`;
+}
+
+function RichText({
+  value,
+  className,
+}: {
+  value?: string;
+  className?: string;
+}) {
+  if (!value) return null;
+
+  const looksLikeHtml = /<\/?[a-z][\s\S]*>/i.test(value);
+
+  if (looksLikeHtml) {
+    return (
+      <div
+        className={className}
+        dangerouslySetInnerHTML={{ __html: value }}
+      />
+    );
+  }
+
+  return (
+    <div className={className} style={{ whiteSpace: "pre-wrap" }}>
+      {value}
+    </div>
+  );
 }
 
 function getStatusTone(status?: string, isPending?: boolean) {
@@ -188,11 +217,15 @@ function normalizeSubmissionResponse(
       item?.output !== undefined && item?.output !== null
         ? String(item.output)
         : "Hidden",
+    expected_output:
+      item?.expected_output !== undefined && item?.expected_output !== null
+        ? String(item.expected_output)
+        : "Hidden",
     status: item?.status ?? "Wrong Answer",
+    error: item?.error ?? "",
     time: item?.time ?? "",
     memory: item?.memory ?? "",
-    expected_output: item?.expected_output,
-    is_hidden: item?.is_hidden,
+    is_hidden: item?.is_hidden ?? true,
   }));
 
   return {
@@ -221,15 +254,15 @@ export default function QuestionPage() {
   const dragStateRef = useRef({
     dragging: false,
     startX: 0,
-    startWidth: 430,
+    startWidth: 420,
   });
 
   const [loading, setLoading] = useState(true);
   const [leftTab, setLeftTab] = useState<LeftTab>("question");
   const [activeTab, setActiveTab] = useState<ActiveTab>("input");
-
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [showSubmissionModal, setShowSubmissionModal] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
 
   const [question, setQuestion] = useState<QuestionData>(EMPTY_QUESTION);
   const [submissions, setSubmissions] = useState<SubmissionRecord[]>([]);
@@ -245,7 +278,7 @@ export default function QuestionPage() {
   const [running, setRunning] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const [leftWidth, setLeftWidth] = useState(430);
+  const [leftWidth, setLeftWidth] = useState(420);
   const [codeByLanguage, setCodeByLanguage] = useState<Record<LanguageKey, string>>({
     python: "# start code here",
     javascript: "# start code here",
@@ -254,6 +287,14 @@ export default function QuestionPage() {
     cpp: "# start code here",
   });
 
+  const [generatedInput, setGeneratedInput] = useState("");
+  const [generatedOutput, setGeneratedOutput] = useState("");
+  const [generatedError, setGeneratedError] = useState("");
+  const [generating, setGenerating] = useState(false);
+
+  const [modalLoading, setModalLoading] = useState(false);
+  const [modalSubmission, setModalSubmission] = useState<SubmissionRecord | null>(null);
+
   const selectedLanguage =
     LANGUAGE_OPTIONS.find((item) => item.value === language) ?? LANGUAGE_OPTIONS[0];
 
@@ -261,6 +302,13 @@ export default function QuestionPage() {
     submissions.find((item) => item.id === selectedSubmissionId) ?? null;
 
   const selectedTestCases = selectedSubmission?.results ?? [];
+
+  const tags = useMemo(() => {
+    return (question.tags ?? "")
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+  }, [question.tags]);
 
   useEffect(() => {
     const load = async () => {
@@ -287,6 +335,8 @@ export default function QuestionPage() {
             output_format: sanitizeText(data?.output_format),
             constraints: sanitizeText(data?.constraints),
             example: sanitizeText(data?.example),
+            explanation: sanitizeText(data?.explanation),
+            tags: sanitizeText(data?.tags),
           };
         }
 
@@ -317,11 +367,15 @@ export default function QuestionPage() {
                       tc?.output !== undefined && tc?.output !== null
                         ? String(tc.output)
                         : "Hidden",
+                    expected_output:
+                      tc?.expected_output !== undefined && tc?.expected_output !== null
+                        ? String(tc.expected_output)
+                        : "Hidden",
                     status: tc?.status ?? "Wrong Answer",
+                    error: tc?.error ?? "",
                     time: tc?.time ?? "",
                     memory: tc?.memory ?? "",
-                    expected_output: tc?.expected_output,
-                    is_hidden: tc?.is_hidden,
+                    is_hidden: tc?.is_hidden ?? true,
                   }))
                 : [],
             }));
@@ -424,7 +478,7 @@ export default function QuestionPage() {
   useEffect(() => {
     const onMove = (event: PointerEvent) => {
       if (!dragStateRef.current.dragging) return;
-      const bounded = Math.max(320, Math.min(520, event.clientX));
+      const bounded = Math.max(340, Math.min(520, event.clientX));
       setLeftWidth(bounded);
     };
 
@@ -456,7 +510,7 @@ export default function QuestionPage() {
         })
       );
     } catch {
-      // ignore localStorage failures
+      // ignore
     }
   }, [language, code, stdin, loading, questionId]);
 
@@ -481,6 +535,7 @@ export default function QuestionPage() {
       ...prev,
       [language]: code,
     }));
+
     const cached = codeByLanguage[nextLanguage];
     setLanguage(nextLanguage);
     setCode(cached || getStarterCode(question, nextLanguage) || "# start code here");
@@ -525,6 +580,50 @@ export default function QuestionPage() {
     }
   };
 
+  const handleGenerateExpectedOutput = async () => {
+    if (!questionId) return;
+    const input = generatedInput.trim();
+
+    if (!input) {
+      setGeneratedError("Insert input first.");
+      setGeneratedOutput("");
+      return;
+    }
+
+    setGenerating(true);
+    setGeneratedError("");
+    setGeneratedOutput("");
+
+    try {
+      const response = await fetch(`${API_BASE}/questions/${questionId}/generate-output`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ input }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.detail ?? "Failed to generate expected output");
+      }
+
+      const nextOutput =
+        data?.expected_output ??
+        data?.output ??
+        data?.result ??
+        data?.answer ??
+        "";
+
+      setGeneratedOutput(String(nextOutput));
+    } catch (err) {
+      setGeneratedOutput("");
+      setGeneratedError(err instanceof Error ? err.message : "Failed to generate expected output");
+    } finally {
+      setGenerating(false);
+    }
+  };
+
   const handleSubmit = async () => {
     persistDraftNow();
     setSubmitting(true);
@@ -551,13 +650,15 @@ export default function QuestionPage() {
     setSelectedSubmissionId(tempId);
 
     try {
+      const token = localStorage.getItem("access_token");
+
       const response = await fetch(`${API_BASE}/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
-          user_id: 1,
           question_id: Number(questionId ?? question.id),
           code,
           language,
@@ -591,12 +692,46 @@ export default function QuestionPage() {
     }
   };
 
-  const openSubmissionModal = (submissionId: number) => {
+  const openSubmissionModal = async (submissionId: number) => {
     setSelectedSubmissionId(submissionId);
     setShowSubmissionModal(true);
+    setModalLoading(true);
+    setModalSubmission(null);
+
+    try {
+      const cached = submissions.find((item) => item.id === submissionId);
+      if (cached?.code) {
+        setModalSubmission(cached);
+        return;
+      }
+
+      const response = await fetch(`${API_BASE}/submissions/${submissionId}`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.detail ?? "Failed to load submission");
+      }
+
+      setModalSubmission({
+        id: Number(data.id),
+        user_id: Number(data.user_id ?? 1),
+        question_id: Number(data.question_id ?? Number(questionId ?? question.id)),
+        code: sanitizeText(data.code),
+        language: data.language ?? "python",
+        status: data.status ?? "Submitted",
+        total_passed: Number(data.total_passed ?? 0),
+        total_cases: Number(data.total_cases ?? 0),
+        created_at: data.created_at,
+        results: Array.isArray(data.results) ? data.results : [],
+      });
+    } catch {
+      setModalSubmission(null);
+    } finally {
+      setModalLoading(false);
+    }
   };
 
-  const selectedModalSubmission = selectedSubmission;
+  const selectedModalSubmission = modalSubmission ?? selectedSubmission;
   const statusTone = getStatusTone(selectedSubmission?.status, selectedSubmission?.isPending);
 
   return (
@@ -614,6 +749,15 @@ export default function QuestionPage() {
         </div>
 
         <div className={styles.topRight}>
+          <button
+            type="button"
+            className={`${styles.topIconButton} ${bookmarked ? styles.topIconButtonActive : ""}`}
+            onClick={() => setBookmarked((prev) => !prev)}
+            aria-label="Bookmark"
+          >
+            <Bookmark size={16} fill={bookmarked ? "currentColor" : "none"} />
+          </button>
+
           <div className={styles.avatarCircle} aria-hidden="true">
             A
           </div>
@@ -625,7 +769,7 @@ export default function QuestionPage() {
             disabled={running || loading || submitting}
           >
             {running ? (
-              <Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} />
+              <Loader2 size={16} className={styles.spin} />
             ) : (
               <Play size={16} />
             )}
@@ -643,13 +787,12 @@ export default function QuestionPage() {
                     borderColor: "rgba(34, 197, 94, 0.45)",
                     background: "rgba(34, 197, 94, 0.12)",
                     color: "#86efac",
-                    borderRadius: "4px",
                   }
                 : undefined
             }
           >
             {submitting ? (
-              <Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} />
+              <Loader2 size={16} className={styles.spin} />
             ) : (
               <Send size={16} />
             )}
@@ -671,7 +814,7 @@ export default function QuestionPage() {
             onClick={() => setLeftTab("question")}
             aria-label="Question"
           >
-            <ClipboardList size={18} />
+            <FolderClosed size={18} />
           </button>
 
           <button
@@ -680,7 +823,7 @@ export default function QuestionPage() {
             onClick={() => setLeftTab("submissions")}
             aria-label="Submissions"
           >
-            <FolderClosed size={18} />
+            <Eye size={18} />
           </button>
         </aside>
 
@@ -718,63 +861,129 @@ export default function QuestionPage() {
               <div className={styles.scrollArea}>
                 <div className={styles.questionMeta}>
                   <h1 className={styles.questionHeading}>{question.title}</h1>
+
                   <div className={styles.metaRow}>
-                    <span className={styles.difficultyBadge}>{question.difficulty}</span>
+                    <span className={styles.difficultyBadge}>
+                      {question.difficulty || "easy"}
+                    </span>
+
+                    {typeof question.max_marks === "number" && (
+                      <span className={styles.pointsBadge}>
+                        {question.max_marks} pts
+                      </span>
+                    )}
+
+                    {tags.map((tag) => (
+                      <span key={tag} className={styles.tagBadge}>
+                        {tag}
+                      </span>
+                    ))}
                   </div>
+
                   <div className={styles.limitText}>
-                    Time Limit: {question.time_limit ?? 2}, Memory Limit:{" "}
-                    {question.memory_limit ?? 256000}
+                    Time Limit: 2, Memory Limit: 256000
                   </div>
                 </div>
 
                 {question.description ? (
                   <section className={styles.sectionBlock}>
-                    <div
-                      className={styles.sectionBody}
-                      dangerouslySetInnerHTML={{ __html: question.description }}
-                    />
+                    <h3 className={styles.sectionTitle}>Question</h3>
+                    <RichText value={question.description} className={styles.richText} />
                   </section>
                 ) : null}
 
                 {question.input_format ? (
                   <section className={styles.sectionBlock}>
                     <h3 className={styles.sectionTitle}>Input</h3>
-                    <div
-                      className={styles.sectionBody}
-                      dangerouslySetInnerHTML={{ __html: question.input_format }}
-                    />
+                    <RichText value={question.input_format} className={styles.richText} />
                   </section>
                 ) : null}
+                
+
+
 
                 {question.output_format ? (
                   <section className={styles.sectionBlock}>
                     <h3 className={styles.sectionTitle}>Output</h3>
-                    <div
-                      className={styles.sectionBody}
-                      dangerouslySetInnerHTML={{ __html: question.output_format }}
-                    />
+                    <RichText value={question.output_format} className={styles.richText} />
                   </section>
                 ) : null}
 
                 {question.constraints ? (
                   <section className={styles.sectionBlock}>
                     <h3 className={styles.sectionTitle}>Constraints</h3>
-                    <div
-                      className={styles.sectionBody}
-                      dangerouslySetInnerHTML={{ __html: question.constraints }}
-                    />
+                    <RichText value={question.constraints} className={styles.richText} />
                   </section>
                 ) : null}
 
                 {question.example ? (
                   <section className={styles.sectionBlock}>
-                    <h3 className={styles.sectionTitle}>Example</h3>
-                    <div
-                      className={styles.sectionBody}
-                      dangerouslySetInnerHTML={{ __html: question.example }}
-                    />
+                    <div className={styles.sectionHeader}>
+                      <h3 className={styles.sectionTitle}>Example</h3>
+                    </div>
+
+                    <div className={styles.exampleCard}>
+                      <RichText value={question.example} className={styles.exampleBody} />
+                    </div>
                   </section>
                 ) : null}
+
+                {question.explanation ? (
+                  <section className={styles.sectionBlock}>
+                    <h3 className={styles.sectionTitle}>Explanation</h3>
+                    <RichText value={question.explanation} className={styles.richText} />
+                  </section>
+                ) : null}
+
+                <section className={styles.sectionBlock}>
+                  <div className={styles.sectionHeader}>
+                    <h3 className={styles.sectionTitle}>Generated Expected Output</h3>
+                    <button
+                      type="button"
+                      className={styles.headerIconButton}
+                      aria-label="Info"
+                    >
+                      <Info size={16} />
+                    </button>
+                  </div>
+
+                  <label className={styles.helperLabel}>Insert Input</label>
+                  <textarea
+                    className={styles.generateInput}
+                    value={generatedInput}
+                    onChange={(e) => setGeneratedInput(e.target.value)}
+                    placeholder="Input"
+                    spellCheck={false}
+                  />
+
+                  <button
+                    type="button"
+                    className={styles.generateButton}
+                    onClick={handleGenerateExpectedOutput}
+                    disabled={generating}
+                  >
+                    {generating ? (
+                      <>
+                        <Loader2 size={18} className={styles.spin} />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        Generate Expected Output
+                        <span className={styles.generateArrow}>›</span>
+                      </>
+                    )}
+                  </button>
+
+                  {generatedError ? (
+                    <div className={styles.generateError}>{generatedError}</div>
+                  ) : null}
+
+                  <label className={styles.helperLabel}>Expected Output</label>
+                  <pre className={styles.generateOutput}>
+                    {generatedOutput || " "}
+                  </pre>
+                </section>
               </div>
             ) : (
               <div className={styles.scrollArea}>
@@ -792,47 +1001,33 @@ export default function QuestionPage() {
                   <div className={styles.summaryLeft}>
                     <div className={styles.summaryCount}>
                       {submitting || selectedSubmission?.isPending ? (
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                          <Loader2
-                            size={18}
-                            style={{
-                              animation: "spin 1s linear infinite",
-                              color: statusTone.dot,
-                            }}
-                          />
+                        <span className={styles.inlineLoading}>
+                          <Loader2 size={18} className={styles.spin} />
                           0/0
                         </span>
                       ) : (
                         <div>
-                          {selectedSubmission?.total_passed || 0} /{" "}
+                          {selectedSubmission?.total_passed || 0}/
                           {selectedSubmission?.total_cases || 0}
                         </div>
                       )}
                     </div>
-
                     <div className={styles.summaryLabel}>Test Cases Passes</div>
                   </div>
 
                   <div className={styles.summaryRight}>
                     <div
-                      className={styles.statusText}
+                      className={styles.statusChip}
                       style={{
                         color: statusTone.fg,
                         border: `1px solid ${statusTone.border}`,
                         background: statusTone.bg,
-                        padding: "8px 14px",
-                        borderRadius: 999,
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 8,
                       }}
                     >
                       {(submitting || selectedSubmission?.isPending) && (
                         <span
+                          className={styles.statusDot}
                           style={{
-                            width: 10,
-                            height: 10,
-                            borderRadius: 999,
                             background: statusTone.dot,
                             boxShadow: `0 0 0 4px ${statusTone.bg}`,
                           }}
@@ -853,23 +1048,28 @@ export default function QuestionPage() {
                   <div className={styles.submissionDetailGrid}>
                     <div className={styles.testCaseList}>
                       {selectedTestCases.length > 0 ? (
-                        selectedTestCases.map((tc, index) => (
-                          <button
-                            key={`${tc.title}-${index}`}
-                            type="button"
-                            className={`${styles.testCaseItem} ${
-                              index === selectedTestCaseIndex ? styles.testCaseItemActive : ""
-                            }`}
-                            onClick={() => setSelectedTestCaseIndex(index)}
-                          >
-                            <span>{tc.title}</span>
-                            {String(tc.status ?? "").toLowerCase().includes("accepted") ? (
-                              <span style={{ color: "#10b981" }}>✓</span>
-                            ) : String(tc.status ?? "").toLowerCase().includes("wrong") ? (
-                              <span style={{ color: "#ef4444" }}>✕</span>
-                            ) : null}
-                          </button>
-                        ))
+                        selectedTestCases.map((tc, index) => {
+                          const accepted = (tc.status ?? "").toLowerCase().includes("accepted");
+                          const wrong = (tc.status ?? "").toLowerCase().includes("wrong");
+
+                          return (
+                            <button
+                              key={`${tc.title}-${index}`}
+                              type="button"
+                              className={`${styles.testCaseItem} ${
+                                index === selectedTestCaseIndex ? styles.testCaseItemActive : ""
+                              }`}
+                              onClick={() => setSelectedTestCaseIndex(index)}
+                            >
+                              <span>{tc.title}</span>
+                              {accepted ? (
+                                <span className={styles.passMark}>✓</span>
+                              ) : wrong ? (
+                                <span className={styles.failMark}>✕</span>
+                              ) : null}
+                            </button>
+                          );
+                        })
                       ) : (
                         <div className={styles.emptyMiniState}>No test case data</div>
                       )}
@@ -919,6 +1119,7 @@ export default function QuestionPage() {
                 )}
 
                 <div className={styles.previousSubmissionsTitle}>Previous Submissions</div>
+
                 <div className={styles.previousSubmissionsList}>
                   {submissions.length > 0 ? (
                     submissions.map((submission) => {
@@ -942,14 +1143,8 @@ export default function QuestionPage() {
                           <div className={styles.previousRowMiddle}>
                             <div className={styles.previousRowTitle}>
                               {submission.isPending ? (
-                                <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
-                                  <Loader2
-                                    size={14}
-                                    style={{
-                                      animation: "spin 1s linear infinite",
-                                      color: tone.dot,
-                                    }}
-                                  />
+                                <span className={styles.inlineLoading}>
+                                  <Loader2 size={14} className={styles.spin} />
                                   Loading...
                                 </span>
                               ) : (
@@ -963,6 +1158,7 @@ export default function QuestionPage() {
                               {submission.isPending ? "Submitting" : submission.status}
                             </div>
                           </div>
+
                           <div className={styles.previousRowAction}>
                             <span>View</span>
                             <Eye size={14} />
@@ -1060,17 +1256,13 @@ export default function QuestionPage() {
                   automaticLayout: true,
                   minimap: { enabled: false },
                   scrollBeyondLastLine: false,
-
-  fontFamily: "'Poppins', monospace", // 🔥 ADD THIS
-  lineHeight: 24,                            // 🔥 FIX spacing
-  letterSpacing: 0.6,
-
                   fontSize: 15,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  lineHeight: 24,
+                  letterSpacing: 0.4,
                   lineNumbers: "on",
                   wordWrap: "on",
                   smoothScrolling: true,
-
-                
                   padding: { top: 14, bottom: 14 },
                 }}
               />
@@ -1147,23 +1339,29 @@ export default function QuestionPage() {
             </div>
 
             <div className={styles.modalCodeWrap}>
-              <MonacoEditor
-                height="100%"
-                width="100%"
-                theme="vs-dark"
-                language={selectedModalSubmission.language || "python"}
-                value={selectedModalSubmission.code}
-                options={{
-                  readOnly: true,
-                  domReadOnly: true,
-                  automaticLayout: true,
-                  minimap: { enabled: false },
-                  scrollBeyondLastLine: false,
-                  fontSize: 14,
-                  lineNumbers: "on",
-                  wordWrap: "on"
-                }}
-              />
+              {modalLoading ? (
+                <div className={styles.loadingState}>Loading submission...</div>
+              ) : (
+                <MonacoEditor
+                  height="100%"
+                  width="100%"
+                  theme="vs-dark"
+                  language={selectedModalSubmission.language || "python"}
+                  value={selectedModalSubmission.code}
+                  options={{
+                    readOnly: true,
+                    domReadOnly: true,
+                    automaticLayout: true,
+                    minimap: { enabled: false },
+                    scrollBeyondLastLine: false,
+                    fontSize: 14,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    lineHeight: 22,
+                    lineNumbers: "on",
+                    wordWrap: "on",
+                  }}
+                />
+              )}
             </div>
 
             <div className={styles.modalFooter}>

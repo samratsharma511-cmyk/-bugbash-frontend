@@ -1,0 +1,29 @@
+.body {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  width: 100vw;
+  min-height: 100vh;
+  gap: 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.sidenavbar {
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.session {
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.session:hover {
+  background-color: #e9f0ff;
+  border-radius: 4px;
+  color: rgb(26, 115, 232);
+}
