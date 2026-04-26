@@ -43,26 +43,6 @@ export default function Hero() {
                     <div className={styles.businessTitle}>
                         Also for Businesses and Institutions
                     </div>
-                    <div className={styles.businessButtons}>
-                        <Link
-                            className={styles.secondaryButton}
-                            href="/whitelabel-ai-training"
-                            role="button">
-                            White-label
-                        </Link>
-                        <Link
-                            className={styles.secondaryButton}
-                            href="/ai-corporate-training"
-                            role="button">
-                            AI for Corporate Training
-                        </Link>
-                        <Link
-                            className={styles.secondaryButton}
-                            href="/ai-for-educators"
-                            role="button">
-                            AI for Educators
-                        </Link>
-                    </div>
                 </div>
             </div>
         </section>

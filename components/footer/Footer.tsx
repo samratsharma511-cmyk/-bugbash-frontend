@@ -147,7 +147,7 @@ export default function Footer() {
                                 </Link>
                                 <Link
                                     className={styles.footerLink}
-                                    href="/quiz">
+                                    href="/dashboard">
                                     Quiz Practice
                                 </Link>
                             </div>
