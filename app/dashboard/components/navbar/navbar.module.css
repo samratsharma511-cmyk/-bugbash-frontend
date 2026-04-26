@@ -1,37 +1,62 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    color: black;
+}
 
-  color: black;
+.logo {
+    text-decoration: none;
+    flex-shrink: 0;
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px;
+}
+.logo:hover {
+    background: #e9f0ff;
+}
+.logo:hover .logoWrapper .logoText {
+    color: #1a73e8;
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logoText {
+    font-size: 22px;
+    font-weight: 700;
+    color: black;
 }
 
 .sideNavbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .hamburger {
-  font-size: 20px;
-  cursor: pointer;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .rightSection {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .avatarWrapper {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .gengar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
 }
