@@ -1,5 +1,6 @@
 import styles from './footer.module.css';
 import Image from 'next/image';
+import image from '@/public/logo.png';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -42,7 +43,7 @@ export default function Footer() {
                                         decoding="async"
                                         data-nimg="1"
                                         // style="color: transparent"
-                                        src="https://ai-tutor.ai/icons/AI Tutor Logo.svg"
+                                        src={image}
                                     />
                                     <div className={styles.logoText}>
                                         Algo VERSE

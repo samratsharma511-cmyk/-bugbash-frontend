@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './navbar.module.css';
+import image from '@/public/logo.png';
 import Image from 'next/image';
 
 const navItems = [
@@ -41,7 +42,7 @@ export default function Navbar() {
                                     onClick={close}>
                                     <div className={styles.logoWrapper}>
                                         <Image
-                                            src="https://ai-tutor.ai/icons/AI%20Tutor%20Logo.svg"
+                                            src={image}
                                             width={30}
                                             height={32}
                                             alt="Logo"
