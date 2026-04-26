@@ -36,7 +36,7 @@ export default function Session() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/create-session", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/meet/create-session`, {
         method: "POST",
       });
 
