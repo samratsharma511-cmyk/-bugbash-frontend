@@ -36,6 +36,7 @@ export default function Body() {
         </div>
       </div>
 
+
       {render(page)}
     </div>
   );
