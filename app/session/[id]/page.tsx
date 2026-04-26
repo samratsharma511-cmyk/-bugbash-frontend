@@ -11,21 +11,22 @@ import CodeBlock from "@/app/components/CodeBlock";
 import { useVoice } from "@/app/hooks/useVoice";
 import { speak } from "@/app/hooks/useSpeech";
 
-
-
-
+import {
+  Mic,
+  MicOff,
+  VideoOff,
+  Captions,
+  MonitorUp,
+  MoreVertical,
+  PhoneOff,
+} from "lucide-react";
 
 export default function SessionPage() {
   const params = useParams();
   const sessionId = params.id as string;
 
-
-    const [aiSpeaking, setAiSpeaking] = useState(false);
-    const [callMode, setCallMode] = useState(false);
-
-
-
-
+  const [aiSpeaking, setAiSpeaking] = useState(false);
+  const [callMode, setCallMode] = useState(false);
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<any[]>([]);
@@ -71,7 +72,7 @@ export default function SessionPage() {
 
   const createPlayground = async (code?: string) => {
     try {
-      const res = await fetch(`{process.env.NEXT_PUBLIC_BACKEND_URL}/playgrounds/`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/playgrounds/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -164,8 +165,8 @@ export default function SessionPage() {
 
       if (data.explanation) {
         setAiSpeaking(true);
-await speak(data.explanation);
-setTimeout(() => setAiSpeaking(false), 2500);
+        await speak(data.explanation);
+        setTimeout(() => setAiSpeaking(false), 2500);
       }
     } catch {
       setMessages((prev) => [
@@ -199,11 +200,12 @@ setTimeout(() => setAiSpeaking(false), 2500);
     sendMessage(text);
   });
 
+  const endSession = () => {
+    setShowPlayground(false);
+    setIsMinimized(false);
+  };
+
   return (
-
-   
-
-
     <div style={{ display: "flex", height: "100vh" }}>
       <div style={{ flex: 1 }}>
         {showPlayground && questionId && (
@@ -240,6 +242,84 @@ setTimeout(() => setAiSpeaking(false), 2500);
               speak(explanation);
             }}
           />
+        )}
+
+        {!showPlayground && (
+          <div className={styles.meetScreen}>
+            <div className={styles.meetHeader}>
+              <div className={styles.sessionBadge}>Session live</div>
+
+              <div className={styles.memberBadge}>
+                <div className={styles.memberAvatar}>1</div>
+                <span>1</span>
+              </div>
+            </div>
+
+            <div className={styles.stage}>
+              <div
+                className={`${styles.stageOrb} ${
+                  listening || aiSpeaking ? styles.stageOrbActive : ""
+                }`}
+              >
+                <div className={styles.stageAvatar}>A</div>
+              </div>
+
+              <div className={styles.stageName}>Ayush</div>
+            </div>
+
+            <div className={styles.bottomDock}>
+              <div className={styles.leftMeta}>
+                <span className={styles.sessionCode}>kex-xhqf-exq</span>
+                <span className={styles.statusText}>
+                  {aiSpeaking ? "Tutor speaking..." : listening ? "Listening..." : "Ready"}
+                </span>
+              </div>
+
+              <div className={styles.controls}>
+                <button
+                  onClick={listening ? stop : start}
+                  className={`${styles.controlButton} ${
+                    listening ? styles.controlButtonLive : ""
+                  }`}
+                  aria-label={listening ? "Stop microphone" : "Start microphone"}
+                >
+                  {listening ? <MicOff size={20} /> : <Mic size={20} />}
+                </button>
+
+                <button className={styles.controlButton} aria-label="Camera off">
+                  <VideoOff size={20} />
+                </button>
+
+                <button className={styles.controlButton} aria-label="Captions">
+                  <Captions size={20} />
+                </button>
+
+                <button className={styles.controlButton} aria-label="Present">
+                  <MonitorUp size={20} />
+                </button>
+
+                <button className={styles.controlButton} aria-label="More options">
+                  <MoreVertical size={20} />
+                </button>
+
+                <button
+                  className={styles.endSessionButton}
+                  onClick={endSession}
+                  aria-label="End session"
+                >
+                  <PhoneOff size={18} />
+                  <span>End session</span>
+                </button>
+              </div>
+
+              <button
+                className={styles.playgroundButton}
+                onClick={() => setShowPlayground(true)}
+              >
+                Open playground
+              </button>
+            </div>
+          </div>
         )}
       </div>
 
@@ -360,10 +440,7 @@ setTimeout(() => setAiSpeaking(false), 2500);
             placeholder="Ask a DSA question..."
           />
 
-          <button
-            className={styles.button}
-            onClick={() => sendMessage()}
-          >
+          <button className={styles.button} onClick={() => sendMessage()}>
             Send
           </button>
 
