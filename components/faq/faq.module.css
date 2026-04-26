@@ -456,6 +456,26 @@
     padding: 32px 0;
 }
 
+.bannerContainer {
+    width: 100%;
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 32px 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.faqSection {
+    display: block;
+    width: 100%;
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 40px 1rem;
+    box-sizing: border-box;
+}
+
 .iconInline {
     display: inline-flex;
     align-items: center;
