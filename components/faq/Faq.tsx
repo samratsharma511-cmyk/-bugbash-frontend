@@ -31,9 +31,10 @@ export default function Faq() {
                                     Structured DSA learning paths
                                 </h3>
                                 <p className={styles.textMuted}>
-                                    Practice DSA through guided coding assignments,
-                                    quizzes, and real problem-solving challenges
-                                    designed to build strong fundamentals.
+                                    Practice DSA through guided coding
+                                    assignments, quizzes, and real
+                                    problem-solving challenges designed to build
+                                    strong fundamentals.
                                 </p>
                             </div>
                         </div>
@@ -46,9 +47,10 @@ export default function Faq() {
                                         Consistent practice, real improvement
                                     </h3>
                                     <p className={styles.textMuted}>
-                                        Solve problems daily, track your progress,
-                                        and improve your problem-solving skills
-                                        step by step with structured assignments.
+                                        Solve problems daily, track your
+                                        progress, and improve your
+                                        problem-solving skills step by step with
+                                        structured assignments.
                                     </p>
                                 </div>
                                 <div>
@@ -86,9 +88,10 @@ export default function Faq() {
                                         Real coding skill evaluation
                                     </h3>
                                     <p className={styles.textMuted}>
-                                        Get evaluated based on real coding performance,
-                                        receive feedback, and level up your DSA skills
-                                        with adaptive difficulty.
+                                        Get evaluated based on real coding
+                                        performance, receive feedback, and level
+                                        up your DSA skills with adaptive
+                                        difficulty.
                                     </p>
                                 </div>
                             </div>
@@ -102,9 +105,9 @@ export default function Faq() {
                                         Daily DSA practice made simple
                                     </h3>
                                     <p className={styles.textMuted}>
-                                        Practice anytime, anywhere with short coding
-                                        assignments and quizzes that fit into your
-                                        daily routine.
+                                        Practice anytime, anywhere with short
+                                        coding assignments and quizzes that fit
+                                        into your daily routine.
                                     </p>
                                 </div>
                                 <div>
@@ -165,7 +168,7 @@ export default function Faq() {
                         <div className={styles.ctaWrapper}>
                             <Link
                                 className={styles.ctaButton}
-                                href="/dsa">
+                                href="/dashboard">
                                 Get started
                             </Link>
                         </div>

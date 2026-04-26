@@ -74,12 +74,12 @@ export default function Footer() {
                                                 src="https://ai-tutor.ai/icons/mail.svg"
                                             />
                                             <span className={styles.emailText}>
-                                                support@dsa-ai.com
+                                                support@algoverse.com
                                             </span>
                                         </a>
                                         <a
                                             className={styles.footerLink}
-                                            href="tel:+44 20 3576 2743"
+                                            href="tel:+91 00000 00000"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             role="link">
@@ -93,29 +93,7 @@ export default function Footer() {
                                                 // style="color: transparent"
                                                 src="https://ai-tutor.ai/icons/phone.svg"
                                             />
-                                            +44 20 3576 2743
-                                        </a>
-                                        <a
-                                            className={styles.footerLink}
-                                            href="https://maps.app.goo.gl/uDrZTtYafUQozgKA8"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            role="link">
-                                            <Image
-                                                alt=""
-                                                loading="lazy"
-                                                width="20"
-                                                height="20"
-                                                decoding="async"
-                                                data-nimg="1"
-                                                className={styles.icon}
-                                                // style="color: transparent"
-                                                src="https://ai-tutor.ai/icons/pin.svg"
-                                            />
-                                            <p className={styles.textMuted}>
-                                                Lumination AI Ltd, 86-90 Paul
-                                                Street London, UK
-                                            </p>
+                                            +91 00000 00000
                                         </a>
                                     </div>
                                 </div>
