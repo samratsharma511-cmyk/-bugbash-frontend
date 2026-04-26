@@ -57,7 +57,7 @@ const data = [
 
 export default function Review() {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id="reviews">
             <div className={styles.wrapper}>
                 <h2 className={styles.title}>Loved by learners worldwide</h2>
 
