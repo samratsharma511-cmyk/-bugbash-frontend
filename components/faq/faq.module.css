@@ -55,8 +55,9 @@
 
 .whiteBox {
     background: white;
-    padding: 2rem;
+    padding-top: 10px;
     border-radius: 1rem;
+    margin-top: -3rem;
 }
 
 .courseItem {
