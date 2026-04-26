@@ -61,7 +61,7 @@ export default function FaqAccordion() {
                     <div
                         key={index}
                         data-open={isOpen}
-                        className={styles.faqItem}
+                      className={styles.faqItem}
                         aria-label={faq.question}>
                         <div data-open={isOpen}>
                             <button
