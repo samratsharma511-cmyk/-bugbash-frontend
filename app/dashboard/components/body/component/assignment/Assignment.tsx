@@ -167,7 +167,7 @@ export default function Assignment() {
       const token = localStorage.getItem("access_token");
 
       const res = await fetch(
-        `${API_BASE}/create/assignment?prompt=${encodeURIComponent(cleanPrompt)}`,
+        `${API_BASE}/ai/create/assignment?prompt=${encodeURIComponent(cleanPrompt)}`,
         {
           method: "POST",
           headers: token
