@@ -229,6 +229,43 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .grid2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+    }
+    .grid2 .flexCol {
+        align-items: center;
+    }
+    .largeIcon {
+        width: 140px !important;
+        height: 140px !important;
+        margin: 0 auto;
+    }
+    .colorBox1,
+    .colorBox2,
+    .colorBox3,
+    .colorBox4 {
+        padding: 24px 20px !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .largeIcon {
+        width: 110px !important;
+        height: 110px !important;
+    }
+    .colorBox1,
+    .colorBox2,
+    .colorBox3,
+    .colorBox4 {
+        padding: 20px 16px !important;
+    }
 }
 
 .courseItemClean {
