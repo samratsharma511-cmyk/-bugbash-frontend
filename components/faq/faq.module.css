@@ -485,3 +485,7 @@
 .marginTop {
     margin-top: 16px;
 }
+.semiFullWidth {
+    width: 87%;
+    margin: auto;
+}

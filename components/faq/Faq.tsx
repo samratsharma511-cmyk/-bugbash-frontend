@@ -41,6 +41,16 @@ export default function Faq() {
                     <div className={styles.whiteBox}>
                         <div className={styles.colorBox2}>
                             <div className={styles.grid2}>
+                                <div className={styles.flexCol}>
+                                    <h3 className={styles.heading}>
+                                        Inspired learning, affordable pricing
+                                    </h3>
+                                    <p className={styles.textMuted}>
+                                        Personal tutoring is not a luxury
+                                        anymore. Start your journey for as
+                                        little as the price of a cup of coffee.
+                                    </p>
+                                </div>
                                 <div>
                                     <Image
                                         alt="start"
@@ -52,16 +62,6 @@ export default function Faq() {
                                         className={styles.largeIcon}
                                         src="https://ai-tutor.ai/images/bg/interest-triangle.svg"
                                     />
-                                </div>
-                                <div className={styles.flexCol}>
-                                    <h3 className={styles.heading}>
-                                        Inspired learning, affordable pricing
-                                    </h3>
-                                    <p className={styles.textMuted}>
-                                        Personal tutoring is not a luxury
-                                        anymore. Start your journey for as
-                                        little as the price of a cup of coffee.
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +98,16 @@ export default function Faq() {
                     <div className={styles.whiteBox}>
                         <div className={styles.colorBox4}>
                             <div className={styles.grid2}>
+                                <div className={styles.flexCol}>
+                                    <h3 className={styles.heading}>
+                                        Fit learning into your work-life balance
+                                    </h3>
+                                    <p className={styles.textMuted}>
+                                        Access TutorAI on your preferred device
+                                        and turn spare moments into powerful
+                                        learning opportunities.
+                                    </p>
+                                </div>
                                 <div>
                                     <Image
                                         alt="start"
@@ -109,16 +119,6 @@ export default function Faq() {
                                         className={styles.largeIcon}
                                         src="https://ai-tutor.ai/images/bg/interest-square.svg"
                                     />
-                                </div>
-                                <div className={styles.flexCol}>
-                                    <h3 className={styles.heading}>
-                                        Fit learning into your work-life balance
-                                    </h3>
-                                    <p className={styles.textMuted}>
-                                        Access TutorAI on your preferred device
-                                        and turn spare moments into powerful
-                                        learning opportunities.
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ export default function Faq() {
                     <FaqAccordion />
                 </div>
             </section>
-            <section className={styles.fullWidth}>
+            <section className={styles.semiFullWidth}>
                 <div className={styles.ctaBox}>
                     <Image
                         alt="trinagle"
