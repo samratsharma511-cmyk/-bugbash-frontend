@@ -46,7 +46,7 @@ export default function Footer() {
                                         src={image}
                                     />
                                     <div className={styles.logoText}>
-                                        Algo VERSE
+                                        AlGO VERSE
                                     </div>
                                 </Link>
                                 <p className={styles.textMuted}>

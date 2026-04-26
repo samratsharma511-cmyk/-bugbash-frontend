@@ -49,27 +49,36 @@ export default function AboutPage() {
                         <div className={styles.heroText}>
                             <span className={styles.eyebrow}>
                                 <Sparkles size={16} />
-                                About DSA AI
+                                About AlGO VERSE
                             </span>
-                            <h1>Learn data structures with a tutor that stays with you.</h1>
+                            <h1>
+                                Learn data structures with a tutor that stays
+                                with you.
+                            </h1>
                             <p>
-                                DSA AI helps developers build interview-ready
-                                problem solving skills through structured
-                                lessons, real coding practice, and AI feedback
-                                that meets learners where they are.
+                                AlGO VERSE helps developers build
+                                interview-ready problem solving skills through
+                                structured lessons, real coding practice, and AI
+                                feedback that meets learners where they are.
                             </p>
                             <div className={styles.actions}>
-                                <Link href="/login" className={styles.primaryButton}>
+                                <Link
+                                    href="/login"
+                                    className={styles.primaryButton}>
                                     Start learning
                                     <ArrowRight size={18} />
                                 </Link>
-                                <Link href="/#Faq" className={styles.secondaryButton}>
+                                <Link
+                                    href="/#Faq"
+                                    className={styles.secondaryButton}>
                                     View FAQ
                                 </Link>
                             </div>
                         </div>
 
-                        <div className={styles.mediaPanel} aria-label="Learning preview">
+                        <div
+                            className={styles.mediaPanel}
+                            aria-label="Learning preview">
                             <video
                                 className={styles.heroVideo}
                                 src="/video/mission.mp4"
@@ -96,7 +105,10 @@ export default function AboutPage() {
                 <section className={styles.section}>
                     <div className={styles.sectionHeader}>
                         <span className={styles.smallLabel}>Our mission</span>
-                        <h2>Make DSA practice clearer, faster, and more personal.</h2>
+                        <h2>
+                            Make DSA practice clearer, faster, and more
+                            personal.
+                        </h2>
                         <p>
                             Most learners do not need more random questions.
                             They need a path, useful feedback, and enough
@@ -108,7 +120,9 @@ export default function AboutPage() {
                         {values.map((item) => {
                             const Icon = item.icon;
                             return (
-                                <article className={styles.valueCard} key={item.title}>
+                                <article
+                                    className={styles.valueCard}
+                                    key={item.title}>
                                     <div className={styles.iconBox}>
                                         <Icon size={24} />
                                     </div>
@@ -132,7 +146,9 @@ export default function AboutPage() {
                         </div>
                     </div>
                     <div className={styles.storyCopy}>
-                        <span className={styles.smallLabel}>Why we built it</span>
+                        <span className={styles.smallLabel}>
+                            Why we built it
+                        </span>
                         <h2>DSA becomes easier when feedback is immediate.</h2>
                         <p>
                             The platform is designed for learners who want to
@@ -153,8 +169,10 @@ export default function AboutPage() {
                             <Mail size={24} />
                         </div>
                         <div>
-                            <span className={styles.smallLabel}>Contact Us</span>
-                            <h2>Need help with DSA AI?</h2>
+                            <span className={styles.smallLabel}>
+                                Contact Us
+                            </span>
+                            <h2>Need help with AlGO VERSE?</h2>
                             <p>
                                 Reach out for support, product questions, or
                                 partnership inquiries. Our team will help you
@@ -162,8 +180,8 @@ export default function AboutPage() {
                             </p>
                             <a
                                 className={styles.textLink}
-                                href="mailto:support@dsa-ai.com">
-                                support@dsa-ai.com
+                                href="mailto:support@algoverse.com">
+                                support@algoverse.com
                             </a>
                         </div>
                     </article>
@@ -194,9 +212,9 @@ export default function AboutPage() {
                             <span className={styles.smallLabel}>
                                 Terms & Conditions
                             </span>
-                            <h2>Use DSA AI responsibly and fairly.</h2>
+                            <h2>Use AlGO VERSE responsibly and fairly.</h2>
                             <p>
-                                By using DSA AI, learners agree to use the
+                                By using AlGO VERSE, learners agree to use the
                                 platform for lawful learning purposes, respect
                                 service limits, and avoid misusing content,
                                 systems, or other users&apos; access.
