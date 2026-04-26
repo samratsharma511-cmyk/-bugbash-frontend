@@ -1,6 +1,6 @@
-import styles from "./footer.module.css";
-import Image from "next/image";
-import Link from "next/link";
+import styles from './footer.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -33,8 +33,7 @@ export default function Footer() {
                                 <Link
                                     className={styles.footerLogo}
                                     href="/"
-                                    role="link"
-                                >
+                                    role="link">
                                     <Image
                                         alt="Logo"
                                         loading="lazy"
@@ -50,7 +49,9 @@ export default function Footer() {
                                     </div>
                                 </Link>
                                 <p className={styles.textMuted}>
-                                    Practice Data Structures & Algorithms with AI-powered assignments, quizzes, and real coding challenges.
+                                    Practice Data Structures & Algorithms with
+                                    AI-powered assignments, quizzes, and real
+                                    coding challenges.
                                 </p>
                                 <div className={styles.marginTop}>
                                     <div className={styles.footerTitle}>
@@ -61,8 +62,7 @@ export default function Footer() {
                                             className={styles.footerLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            role="link"
-                                        >
+                                            role="link">
                                             <Image
                                                 alt=""
                                                 loading="lazy"
@@ -73,9 +73,7 @@ export default function Footer() {
                                                 // style="color: transparent"
                                                 src="https://ai-tutor.ai/icons/mail.svg"
                                             />
-                                            <span
-                                                className={styles.emailText}
-                                            >
+                                            <span className={styles.emailText}>
                                                 support@dsa-ai.com
                                             </span>
                                         </a>
@@ -84,8 +82,7 @@ export default function Footer() {
                                             href="tel:+44 20 3576 2743"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            role="link"
-                                        >
+                                            role="link">
                                             <Image
                                                 alt=""
                                                 loading="lazy"
@@ -103,8 +100,7 @@ export default function Footer() {
                                             href="https://maps.app.goo.gl/uDrZTtYafUQozgKA8"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            role="link"
-                                        >
+                                            role="link">
                                             <Image
                                                 alt=""
                                                 loading="lazy"
@@ -128,114 +124,77 @@ export default function Footer() {
                                 <div className={styles.footerTitle}>
                                     Products
                                 </div>
-                                <Link className={styles.footerLink} href="/dsa">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/dashboard">
                                     DSA Sheet
                                 </Link>
-                                <Link className={styles.footerLink} href="/assignments">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/dashboard">
                                     Coding Assignments
                                 </Link>
-                                <Link className={styles.footerLink} href="/quizzes">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/dashboard">
                                     DSA Quizzes
                                 </Link>
-                                <Link className={styles.footerLink} href="/progress">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/dashboard">
                                     Track Progress
                                 </Link>
-                                <Link className={styles.footerLink} href="/interview-prep">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/dashboard">
                                     Interview Prep
                                 </Link>
-                                <Link className={styles.footerLink} href="/roadmap">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/dashboard">
                                     DSA Roadmap
                                 </Link>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/blog"
-                                    role="link"
-                                >
-                                    Blogs
-                                </a>
                             </div>
                             <div className={styles.footerCol}>
                                 <div className={styles.footerTitle}>Tools</div>
-                                <Link className={styles.footerLink} href="/playground">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/playground">
                                     Code Playground
                                 </Link>
-                                <Link className={styles.footerLink} href="/visualizer">
-                                    Algorithm Visualizer
-                                </Link>
-                                <Link className={styles.footerLink} href="/compiler">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/compiler">
                                     Online Compiler
                                 </Link>
-                                <Link className={styles.footerLink} href="/flashcards">
-                                    Flashcards
-                                </Link>
-                                <Link className={styles.footerLink} href="/quiz">
+                                <Link
+                                    className={styles.footerLink}
+                                    href="/quiz">
                                     Quiz Practice
                                 </Link>
                             </div>
                             <div className={styles.footerCol}>
                                 <div className={styles.footerTitle}>About</div>
-                                <a
+                                <Link
                                     className={styles.footerLink}
-                                    href="/pricing"
-                                    role="link"
-                                >
-                                    Plans & Pricing
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="https://ai-tutor.affonso.io"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    role="link"
-                                >
-                                    Affiliate Program
-                                    <svg
-                                        aria-hidden="true"
-                                        fill="none"
-                                        focusable="false"
-                                        height="1em"
-                                        shapeRendering="geometricPrecision"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="1.5"
-                                        viewBox="0 0 24 24"
-                                        width="1em"
-                                        className={styles.iconInline}
-                                    >
-                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                        <path d="M15 3h6v6"></path>
-                                        <path d="M10 14L21 3"></path>
-                                    </svg>
-                                </a>
-                                <a
-                                    className={styles.footerLink}
-                                    href="/about-us"
-                                    role="link"
-                                >
+                                    href="/about">
                                     About Us
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     className={styles.footerLink}
-                                    href="/contact-us"
-                                    role="link"
-                                >
+                                    href="/about#contact-us">
                                     Contact Us
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     className={styles.footerLink}
-                                    href="/privacy-policy"
-                                    role="link"
-                                >
+                                    href="/about#privacy-policy">
                                     Privacy Policy
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     className={styles.footerLink}
-                                    href="/terms-conditions"
-                                    role="link"
-                                >
+                                    href="/about#terms-conditions">
                                     Terms &amp; Conditions
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className={styles.footerBottom}>

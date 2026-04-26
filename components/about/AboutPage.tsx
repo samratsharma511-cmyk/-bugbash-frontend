@@ -4,7 +4,10 @@ import {
     BookOpenCheck,
     BrainCircuit,
     Code2,
+    FileText,
     LineChart,
+    Mail,
+    ShieldCheck,
     Sparkles,
     Target,
 } from 'lucide-react';
@@ -142,6 +145,64 @@ export default function AboutPage() {
                             and return stronger for the next challenge.
                         </p>
                     </div>
+                </section>
+
+                <section className={styles.infoSection}>
+                    <article className={styles.infoCard} id="contact-us">
+                        <div className={styles.infoIcon}>
+                            <Mail size={24} />
+                        </div>
+                        <div>
+                            <span className={styles.smallLabel}>Contact Us</span>
+                            <h2>Need help with DSA AI?</h2>
+                            <p>
+                                Reach out for support, product questions, or
+                                partnership inquiries. Our team will help you
+                                find the right next step.
+                            </p>
+                            <a
+                                className={styles.textLink}
+                                href="mailto:support@dsa-ai.com">
+                                support@dsa-ai.com
+                            </a>
+                        </div>
+                    </article>
+
+                    <article className={styles.infoCard} id="privacy-policy">
+                        <div className={styles.infoIcon}>
+                            <ShieldCheck size={24} />
+                        </div>
+                        <div>
+                            <span className={styles.smallLabel}>
+                                Privacy Policy
+                            </span>
+                            <h2>Your learning data should stay protected.</h2>
+                            <p>
+                                We use account, progress, and practice data to
+                                provide the platform, personalize learning, and
+                                improve reliability. We do not sell personal
+                                information.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article className={styles.infoCard} id="terms-conditions">
+                        <div className={styles.infoIcon}>
+                            <FileText size={24} />
+                        </div>
+                        <div>
+                            <span className={styles.smallLabel}>
+                                Terms & Conditions
+                            </span>
+                            <h2>Use DSA AI responsibly and fairly.</h2>
+                            <p>
+                                By using DSA AI, learners agree to use the
+                                platform for lawful learning purposes, respect
+                                service limits, and avoid misusing content,
+                                systems, or other users&apos; access.
+                            </p>
+                        </div>
+                    </article>
                 </section>
             </main>
             <Footer />
