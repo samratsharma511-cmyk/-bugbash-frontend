@@ -47,7 +47,7 @@ export default function Navbar() {
                                             alt="Logo"
                                         />
                                         <div className={styles.logoText}>
-                                            Algo Verse
+                                            Algo VERSE
                                         </div>
                                     </div>
                                 </Link>

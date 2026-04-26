@@ -45,7 +45,7 @@ export default function Footer() {
                                         src="https://ai-tutor.ai/icons/AI Tutor Logo.svg"
                                     />
                                     <div className={styles.logoText}>
-                                        DSA AI
+                                        Algo VERSE
                                     </div>
                                 </Link>
                                 <p className={styles.textMuted}>
