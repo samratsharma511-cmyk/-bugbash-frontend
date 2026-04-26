@@ -137,12 +137,12 @@ export default function Footer() {
                                 <div className={styles.footerTitle}>Tools</div>
                                 <Link
                                     className={styles.footerLink}
-                                    href="/playground">
+                                    href="/playground/1">
                                     Code Playground
                                 </Link>
                                 <Link
                                     className={styles.footerLink}
-                                    href="/compiler">
+                                    href="/compiler/1">
                                     Online Compiler
                                 </Link>
                                 <Link
