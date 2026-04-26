@@ -34,7 +34,6 @@ def solution():
     pass`;
   };
 
-  // ---------- STRING RESPONSE ----------
   if (typeof ai === "string") {
     const showPlayground = isCodingQuestion(ai);
 
@@ -70,7 +69,6 @@ def solution():
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       
-      {/* ---------- EXPLANATION ---------- */}
       {type === "explanation" && (
         <>
           <div style={{ fontSize: 13, color: "#60a5fa" }}>
@@ -102,7 +100,6 @@ def solution():
         </>
       )}
 
-      {/* ---------- CODE ---------- */}
       {type === "code" && (
         <>
           <div style={{ fontSize: 13, color: "#60a5fa" }}>
@@ -138,7 +135,6 @@ def solution():
         </>
       )}
 
-      {/* ---------- SUBMISSION FEEDBACK ---------- */}
       {type === "submission_feedback" && (
         <>
           <div
@@ -173,7 +169,6 @@ def solution():
         </>
       )}
 
-      {/* ---------- SUGGESTIONS ---------- */}
       {ai.suggestions?.map((s: string, i: number) => (
         <button
           key={i}
