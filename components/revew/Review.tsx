@@ -66,12 +66,15 @@ export default function Review() {
                     effect="coverflow"
                     grabCursor={true}
                     centeredSlides={true}
-                    slidesPerView={1.6}
+                    slidesPerView={1.1}
+                    spaceBetween={12}
                     loop={true}
                     navigation
                     breakpoints={{
-                        640: { slidesPerView: 2 },
-                        1024: { slidesPerView: 2.4 },
+                        480: { slidesPerView: 1.3, spaceBetween: 14 },
+                        640: { slidesPerView: 1.8, spaceBetween: 16 },
+                        900: { slidesPerView: 2, spaceBetween: 20 },
+                        1200: { slidesPerView: 2.4, spaceBetween: 24 },
                     }}
                     coverflowEffect={{
                         rotate: 14,

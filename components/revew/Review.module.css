@@ -3,6 +3,7 @@
     max-width: 84rem;
     margin: 80px auto 40px;
     padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .wrapper {
@@ -11,24 +12,30 @@
     border-radius: 28px;
     padding: 56px 24px 64px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .title {
     color: white;
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: clamp(20px, 4vw, 36px);
     font-weight: 700;
     text-align: center;
-    margin: 0 0 32px;
+    margin: 0 0 24px;
+    line-height: 1.25;
 }
 
 .swiper {
     width: 100%;
-    padding: 32px 0 16px !important;
+    padding: 24px 0 16px !important;
 }
 
 .swiper :global(.swiper-slide) {
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
     opacity: 0.55;
+    height: auto;
+    display: flex;
 }
 
 .swiper :global(.swiper-slide-active) {
@@ -40,7 +47,8 @@
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
-    padding: 28px 24px 26px;
+    padding: 28px 20px 26px;
+    width: 100%;
     min-height: 260px;
     display: flex;
     flex-direction: column;
@@ -48,6 +56,7 @@
     text-align: center;
     gap: 8px;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+    box-sizing: border-box;
 }
 
 .swiper :global(.swiper-slide-active) .card {
@@ -77,16 +86,18 @@
 }
 
 .text {
-    font-size: 15px;
+    font-size: clamp(13px, 2.6vw, 15px);
     line-height: 1.55;
     margin: 6px 0 12px;
     max-width: 28rem;
+    overflow-wrap: break-word;
 }
 
 .name {
     font-weight: 600;
     font-size: 15px;
     margin: 0;
+    word-break: break-word;
 }
 
 .role {
@@ -105,16 +116,18 @@
     top: 50% !important;
     transform: translateY(-50%);
     margin-top: 0 !important;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
     z-index: 5;
 }
 
 .swiper :global(.swiper-button-prev) {
-    left: 10px !important;
+    left: 8px !important;
 }
 
 .swiper :global(.swiper-button-next) {
-    right: 10px !important;
+    right: 8px !important;
 }
 
 .swiper :global(.swiper-button-prev:hover),
@@ -135,11 +148,54 @@
     pointer-events: none;
 }
 
+/* Tablet */
+@media (max-width: 900px) {
+    .section {
+        margin: 60px auto 32px;
+    }
+    .wrapper {
+        padding: 48px 18px 56px;
+        border-radius: 24px;
+    }
+    .card {
+        min-height: 240px;
+        padding: 24px 18px;
+    }
+}
+
+/* Mobile */
 @media (max-width: 640px) {
+    .section {
+        margin: 40px auto 24px;
+        padding: 0 0.75rem;
+    }
+    .wrapper {
+        padding: 36px 12px 44px;
+        border-radius: 20px;
+    }
+    .title {
+        margin-bottom: 16px;
+    }
+    .card {
+        min-height: 220px;
+        padding: 22px 16px;
+        border-radius: 20px;
+    }
+    .avatar {
+        width: 56px;
+        height: 56px;
+        border-width: 2px;
+    }
     .swiper :global(.swiper-button-prev),
     .swiper :global(.swiper-button-next) {
         width: 36px !important;
         height: 36px !important;
+    }
+    .swiper :global(.swiper-button-prev) {
+        left: 4px !important;
+    }
+    .swiper :global(.swiper-button-next) {
+        right: 4px !important;
     }
     .swiper :global(.swiper-button-prev::after),
     .swiper :global(.swiper-button-next::after) {
@@ -147,12 +203,10 @@
     }
 }
 
-@media (max-width: 640px) {
-    .wrapper {
-        padding: 40px 16px 48px;
-    }
-    .card {
-        min-height: 240px;
-        padding: 24px 18px;
+/* Very small screens — hide nav arrows, swipe only */
+@media (max-width: 420px) {
+    .swiper :global(.swiper-button-prev),
+    .swiper :global(.swiper-button-next) {
+        display: none !important;
     }
 }
