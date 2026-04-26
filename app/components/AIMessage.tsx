@@ -13,16 +13,19 @@ export default function AIMessage({
   loading,
   onOpenPlayground,
 }: Props) {
-  if (!ai) return null;
+  if (ai === undefined || ai === null) return null;
 
-  const isCodingQuestion = (text: string) => {
+  const isCodingQuestion = (text?: any) => {
+    if (!text || typeof text !== "string") return false;
+
     const t = text.toLowerCase();
+
     return (
       t.includes("coding question") ||
       t.includes("problem") ||
-      t.includes("write a function") ||
+      t.includes("write") ||
       t.includes("implement") ||
-      t.includes("given") ||
+      t.includes("function") ||
       t.includes("return")
     );
   };
@@ -34,7 +37,7 @@ def solution():
     pass`;
   };
 
-  if (typeof ai === "string") {
+  if (typeof ai === "string" && ai.trim() !== "") {
     const showPlayground = isCodingQuestion(ai);
 
     return (
@@ -64,7 +67,11 @@ def solution():
     );
   }
 
-  const type = ai.type || "explanation";
+  if (typeof ai !== "object") return null;
+
+  const type = ai?.type || "explanation";
+  const explanation = ai?.explanation || "";
+  const code = ai?.code || "";
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -76,13 +83,13 @@ def solution():
           </div>
 
           <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7 }}>
-            {ai.explanation}
+            {explanation}
           </p>
 
-          {(ai.code || isCodingQuestion(ai.explanation)) && (
+          {(code || isCodingQuestion(explanation)) && (
             <button
               onClick={() =>
-                onOpenPlayground?.(ai.code || getStarterCode())
+                onOpenPlayground?.(code || getStarterCode())
               }
               style={{
                 background: "#22c55e",
@@ -115,11 +122,11 @@ def solution():
               fontSize: 13,
             }}
           >
-            <code>{ai.code}</code>
+            <code>{code}</code>
           </pre>
 
           <button
-            onClick={() => onOpenPlayground?.(ai.code)}
+            onClick={() => onOpenPlayground?.(code)}
             style={{
               background: "#22c55e",
               color: "white",
@@ -139,20 +146,20 @@ def solution():
         <>
           <div
             style={{
-              color: ai.status === "Accepted" ? "#22c55e" : "#ef4444",
+              color: ai?.status === "Accepted" ? "#22c55e" : "#ef4444",
               fontWeight: 600,
             }}
           >
-            {ai.status}
+            {ai?.status}
           </div>
 
           <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7 }}>
-            {ai.explanation}
+            {explanation}
           </p>
 
           <button
             onClick={() =>
-              onOpenPlayground?.(ai.code || getStarterCode())
+              onOpenPlayground?.(code || getStarterCode())
             }
             style={{
               background: "#3b82f6",
@@ -169,23 +176,24 @@ def solution():
         </>
       )}
 
-      {ai.suggestions?.map((s: string, i: number) => (
-        <button
-          key={i}
-          onClick={() => sendMessage(s)}
-          style={{
-            background: "#1f2937",
-            color: "#e5e7eb",
-            border: "none",
-            padding: "6px 10px",
-            borderRadius: 6,
-            cursor: "pointer",
-            textAlign: "left",
-          }}
-        >
-          {s}
-        </button>
-      ))}
+      {Array.isArray(ai?.suggestions) &&
+        ai.suggestions.map((s: string, i: number) => (
+          <button
+            key={i}
+            onClick={() => sendMessage(s)}
+            style={{
+              background: "#1f2937",
+              color: "#e5e7eb",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: 6,
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            {s}
+          </button>
+        ))}
     </div>
   );
 }

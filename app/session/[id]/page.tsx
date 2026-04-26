@@ -134,55 +134,104 @@ export default function SessionPage() {
   }, []);
 
   const sendMessage = async (customMessage?: string) => {
-    const finalMessage = customMessage || message;
+  const finalMessage = (customMessage || message).trim();
+  if (!finalMessage) return;
 
-    if (!finalMessage.trim()) return;
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: finalMessage },
+  ]);
+
+  setMessage("");
+  setLoading(true);
+
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/meet/chat/${sessionId}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: finalMessage,
+          system_prompt: `
+You are a friendly DSA tutor.
+Talk like a real teacher.
+
+Flow:
+- Start with casual tone
+- Guide student step by step
+- Ask level if needed
+- Give hints before answers
+- Encourage learning
+
+Keep responses clean and helpful.
+          `,
+        }),
+      }
+    );
+
+    let data: any;
+
+    try {
+      data = await res.json();
+    } catch {
+      data = null;
+    }
+
+    let reply: any;
+
+    if (!data) {
+      reply = {
+        type: "explanation",
+        explanation: "Something went wrong. Try again.",
+      };
+    } else if (typeof data === "string") {
+      reply = {
+        type: "explanation",
+        explanation: data,
+      };
+    } else if (data.explanation || data.type) {
+      reply = data;
+    } else {
+      reply = {
+        type: "explanation",
+        explanation: JSON.stringify(data),
+      };
+    }
 
     setMessages((prev) => [
       ...prev,
-      { role: "user", content: finalMessage },
+      { role: "ai", content: reply },
     ]);
 
-    setMessage("");
-    setLoading(true);
+    const text =
+      typeof reply === "string"
+        ? reply
+        : reply?.explanation || "";
 
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/meet/chat/${sessionId}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: finalMessage }),
-        }
-      );
-
-      const data = await res.json();
-
-      setMessages((prev) => [
-        ...prev,
-        { role: "ai", content: data },
-      ]);
-
-      if (data.explanation) {
-        setAiSpeaking(true);
-        await speak(data.explanation);
-        setTimeout(() => setAiSpeaking(false), 2500);
-      }
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "ai",
-          content: {
-            type: "explanation",
-            explanation: "Error occurred",
-          },
-        },
-      ]);
+    if (text) {
+      setAiSpeaking(true);
+      await speak(text);
+      setTimeout(() => setAiSpeaking(false), 2500);
     }
 
-    setLoading(false);
-  };
+  } catch (err) {
+    console.error(err);
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "ai",
+        content: {
+          type: "explanation",
+          explanation: "Network error. Try again.",
+        },
+      },
+    ]);
+  }
+
+  setLoading(false);
+};
 
   const { start, stop, listening } = useVoice((text) => {
     const lower = text.toLowerCase();
