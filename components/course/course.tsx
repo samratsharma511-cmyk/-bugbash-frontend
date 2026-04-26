@@ -6,27 +6,27 @@ const assignments = [
     {
         title: 'Arrays Basics',
         level: 'Easy',
-        href: '/dsa/arrays-basics',
+        href: '/dashboard',
     },
     {
         title: 'Binary Search',
         level: 'Medium',
-        href: '/dsa/binary-search',
+        href: '/dashboard',
     },
     {
         title: 'Linked List Fundamentals',
         level: 'Medium',
-        href: '/dsa/linked-list',
+        href: '/dashboard',
     },
     {
         title: 'Stacks & Queues',
         level: 'Medium',
-        href: '/dsa/stacks-queues',
+        href: '/dashboard',
     },
     {
         title: 'Dynamic Programming Intro',
         level: 'Hard',
-        href: '/dsa/dp-intro',
+        href: '/dashboard',
     },
 ];
 
@@ -62,7 +62,7 @@ export default function Course() {
                         Start Solving Now <br />
                     </h2>
                     <div className={styles.centerFlex}>
-                        <Link className={styles.button} href="/dsa">
+                        <Link className={styles.button} href="/dashboard">
                             View AI Tools
                             <svg
                                 stroke="currentColor"

@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <div
             style={{
-                background: 'rgb(242 247 255 / var(--tw-bg-opacity, 1))',
+                background: 'rgb(242 247 255)',
             }}>
             <Navbar />
             <Hero />
