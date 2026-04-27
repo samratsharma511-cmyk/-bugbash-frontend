@@ -1025,3 +1025,140 @@
     height: 86vh;
   }
 }
+
+
+
+.aiIntro {
+  color: #d7deea;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
+.aiActionRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.aiButton,
+.aiButtonSecondary {
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #2f3742;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  transition: 0.18s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.aiButton {
+  background: #1976ff;
+  border-color: #1976ff;
+  color: #fff;
+}
+
+.aiButton:hover {
+  background: #0069f2;
+}
+
+.aiButtonSecondary {
+  background: #11161d;
+  color: #eef3fa;
+}
+
+.aiButtonSecondary:hover {
+  background: #151b23;
+  border-color: #3b4652;
+}
+
+.aiButton:disabled,
+.aiButtonSecondary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.aiLoading {
+  margin-top: 10px;
+  color: #9aa3b2;
+  font-size: 13px;
+}
+
+.aiError {
+  margin-top: 10px;
+  color: #fca5a5;
+  font-size: 13px;
+}
+
+.aiMeta {
+  margin-top: 10px;
+  color: #7f8a9b;
+  font-size: 12px;
+}
+
+.aiList {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aiItem {
+  border: 1px solid #27303b;
+  background: #11161d;
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #d7deea;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.aiItemIndex {
+  min-width: 42px;
+  color: #7dd3fc;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.aiItemText {
+  flex: 1;
+}
+
+.aiEmpty {
+  border: 1px dashed #27303b;
+  background: #0b0f14;
+  border-radius: 4px;
+  padding: 12px 14px;
+  color: #8893a4;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.aiQuestionCard {
+  border: 1px solid #27303b;
+  background: #11161d;
+  border-radius: 4px;
+  padding: 14px;
+}
+
+.aiQuestionName {
+  font-size: 14px;
+  font-weight: 800;
+  color: #f7f9fb;
+  margin-bottom: 8px;
+}
+
+.aiQuestionDesc {
+  color: #d7deea;
+  font-size: 13px;
+  line-height: 1.7;
+}

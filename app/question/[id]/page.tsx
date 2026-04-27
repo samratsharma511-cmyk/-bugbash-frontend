@@ -6,11 +6,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import {
   Bookmark,
+  Bot,
   ChevronLeft,
   Eye,
   FolderClosed,
   GripVertical,
   Info,
+  Lightbulb,
+  ListChecks,
   Loader2,
   Maximize2,
   Play,
@@ -69,7 +72,8 @@ type SubmissionRecord = {
 };
 
 type ActiveTab = "input" | "output" | "error";
-type LeftTab = "question" | "submissions";
+type LeftTab = "question" | "submissions" | "ai";
+type AiMode = "hints" | "lines";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_BACKEND_URL?.replace(/\/$/, "") ??
@@ -294,6 +298,13 @@ export default function QuestionPage() {
 
   const [modalLoading, setModalLoading] = useState(false);
   const [modalSubmission, setModalSubmission] = useState<SubmissionRecord | null>(null);
+
+  const [aiMode, setAiMode] = useState<AiMode>("hints");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState("");
+  const [aiHints, setAiHints] = useState<string[]>([]);
+  const [aiIssues, setAiIssues] = useState<{ line: number; issue: string }[]>([]);
+  const [aiLastRun, setAiLastRun] = useState("");
 
   const selectedLanguage =
     LANGUAGE_OPTIONS.find((item) => item.value === language) ?? LANGUAGE_OPTIONS[0];
@@ -656,7 +667,7 @@ export default function QuestionPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({
           question_id: Number(questionId ?? question.id),
@@ -728,6 +739,61 @@ export default function QuestionPage() {
       setModalSubmission(null);
     } finally {
       setModalLoading(false);
+    }
+  };
+
+  const runAiHelp = async (mode: AiMode) => {
+    const nextCode = code.trim();
+    if (!nextCode) {
+      setAiError("Write some code first.");
+      setAiMode(mode);
+      return;
+    }
+
+    setAiMode(mode);
+    setAiLoading(true);
+    setAiError("");
+    setAiHints([]);
+    setAiIssues([]);
+
+    try {
+      const route = mode === "hints" ? "/meet/analyze-code" : "/meet/analyze-lines";
+
+      const response = await fetch(`${API_BASE}${route}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code: nextCode,
+          question_id: Number(questionId ?? question.id),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.detail ?? "AI analysis failed");
+      }
+
+      if (mode === "hints") {
+        const hints = Array.isArray(data?.hints) ? data.hints.map((item: any) => String(item)) : [];
+        setAiHints(hints);
+      } else {
+        const issues = Array.isArray(data)
+          ? data.map((item: any) => ({
+              line: Number(item?.line ?? 0),
+              issue: String(item?.issue ?? ""),
+            }))
+          : [];
+        setAiIssues(issues);
+      }
+
+      setAiLastRun(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    } catch (err) {
+      setAiError(err instanceof Error ? err.message : "AI analysis failed");
+    } finally {
+      setAiLoading(false);
     }
   };
 
@@ -825,6 +891,15 @@ export default function QuestionPage() {
           >
             <Eye size={18} />
           </button>
+
+          <button
+            type="button"
+            className={`${styles.railButton} ${leftTab === "ai" ? styles.railButtonActive : ""}`}
+            onClick={() => setLeftTab("ai")}
+            aria-label="AI Help"
+          >
+            <Bot size={18} />
+          </button>
         </aside>
 
         <aside className={styles.leftPanel}>
@@ -843,6 +918,13 @@ export default function QuestionPage() {
                 onClick={() => setLeftTab("submissions")}
               >
                 ALL SUBMISSIONS
+              </button>
+              <button
+                type="button"
+                className={`${styles.leftTab} ${leftTab === "ai" ? styles.leftTabActive : ""}`}
+                onClick={() => setLeftTab("ai")}
+              >
+                AI HELP
               </button>
             </div>
 
@@ -898,9 +980,6 @@ export default function QuestionPage() {
                     <RichText value={question.input_format} className={styles.richText} />
                   </section>
                 ) : null}
-                
-
-
 
                 {question.output_format ? (
                   <section className={styles.sectionBlock}>
@@ -985,7 +1064,7 @@ export default function QuestionPage() {
                   </pre>
                 </section>
               </div>
-            ) : (
+            ) : leftTab === "submissions" ? (
               <div className={styles.scrollArea}>
                 <div
                   className={styles.submissionSummaryCard}
@@ -1170,6 +1249,102 @@ export default function QuestionPage() {
                     <div className={styles.emptyState}>No previous submissions yet.</div>
                   )}
                 </div>
+              </div>
+            ) : (
+              <div className={styles.scrollArea}>
+                <div className={styles.questionMeta}>
+                  <h1 className={styles.questionHeading}>AI Help</h1>
+                  <div className={styles.limitText}>
+                    Ask the AI for hints based on your current editor code.
+                  </div>
+                </div>
+
+                <section className={styles.sectionBlock}>
+                  <h3 className={styles.sectionTitle}>Review your code</h3>
+                  <div className={styles.aiIntro}>
+                    The AI uses the code in your editor and the current question to give short, useful hints.
+                  </div>
+
+                  <div className={styles.aiActionRow}>
+                    <button
+                      type="button"
+                      className={styles.aiButton}
+                      onClick={() => runAiHelp("hints")}
+                      disabled={aiLoading}
+                    >
+                      {aiLoading && aiMode === "hints" ? (
+                        <Loader2 size={16} className={styles.spin} />
+                      ) : (
+                        <Lightbulb size={16} />
+                      )}
+                      Get hints
+                    </button>
+
+                    <button
+                      type="button"
+                      className={styles.aiButtonSecondary}
+                      onClick={() => runAiHelp("lines")}
+                      disabled={aiLoading}
+                    >
+                      {aiLoading && aiMode === "lines" ? (
+                        <Loader2 size={16} className={styles.spin} />
+                      ) : (
+                        <ListChecks size={16} />
+                      )}
+                      Scan lines
+                    </button>
+                  </div>
+
+                  {aiLastRun ? (
+                    <div className={styles.aiMeta}>Last checked at {aiLastRun}</div>
+                  ) : null}
+
+                  {aiError ? <div className={styles.aiError}>{aiError}</div> : null}
+
+                  {aiLoading ? <div className={styles.aiLoading}>Thinking...</div> : null}
+
+                  {aiMode === "hints" ? (
+                    <div className={styles.aiList}>
+                      {aiHints.length > 0 ? (
+                        aiHints.map((hint, index) => (
+                          <div key={`${hint}-${index}`} className={styles.aiItem}>
+                            <span className={styles.aiItemIndex}>{index + 1}</span>
+                            <span className={styles.aiItemText}>{hint}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className={styles.aiEmpty}>
+                          No hints yet. Click “Get hints” to analyze your current code.
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className={styles.aiList}>
+                      {aiIssues.length > 0 ? (
+                        aiIssues.map((item, index) => (
+                          <div key={`${item.line}-${index}`} className={styles.aiItem}>
+                            <span className={styles.aiItemIndex}>L{item.line || index + 1}</span>
+                            <span className={styles.aiItemText}>{item.issue}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className={styles.aiEmpty}>
+                          No line issues yet. Click “Scan lines” to review the code.
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </section>
+
+                <section className={styles.sectionBlock}>
+                  <h3 className={styles.sectionTitle}>Current question</h3>
+                  <div className={styles.aiQuestionCard}>
+                    <div className={styles.aiQuestionName}>{question.title}</div>
+                    <div className={styles.aiQuestionDesc}>
+                      {question.description || "No question loaded yet."}
+                    </div>
+                  </div>
+                </section>
               </div>
             )}
           </div>
